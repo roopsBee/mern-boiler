@@ -5,18 +5,18 @@ POST  http://localhost:5000/user HTTP/1.1
 content-type: application/json
 
 {
-    "name": "jildl",
-    "email": "jidrlLl.pEsh@gmail.com",
+    "name": "errol",
+    "email": "errol@gmail.com",
     "password": "123456"
 }
 
 ###
 // sign in user
 
-POST  http://localhost:5000/api/auth HTTP/1.1
+POST  http://localhost:5000/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "email":"roops@gmail.com",
-    "password":"123456"
+    "email": "errol@gmail.com",
+    "password": "123456"
 }

@@ -1,13 +1,18 @@
 const express = require("express");
 const passport = require("passport");
+const session = require("express-session");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-
 const initializePassport = require("./passportConfig");
-initializePassport(passport);
 
-require("dotenv").config();
+// if not in production load donenv and variables
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+// Passport init
+initializePassport(passport);
 
 // connect to mongoose
 const uri = process.env.ATLAS_URI;
@@ -26,9 +31,19 @@ connection.once("open", () => {
 // middlewares
 app.use(cors());
 app.use(express.json());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //routes
 app.use("/user", require("./routes/userRoutes"));
+app.use("/auth", require("./routes/authRoutes"));
 
 app.get("/", (req, res) => {
   res.send("hello world");

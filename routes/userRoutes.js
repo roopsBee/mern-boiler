@@ -53,6 +53,7 @@ router.post(
       user.password = null;
       res.status(200).json(user);
     } catch (error) {
+      user.password = null;
       console.error(error.message);
       res.status(500).send("server error");
     }
