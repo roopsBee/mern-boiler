@@ -1,6 +1,8 @@
 const express = require("express");
 const passport = require("passport");
 const session = require("express-session");
+const { checkAuthenticated } = require("./middleware");
+
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -11,17 +13,14 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-// Passport init
-initializePassport(passport);
-
-// connect to mongoose
+// connect to mongodb with mongoose
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
 });
-
+// Show connected to database or error
 const connection = mongoose.connection;
 connection.on("error", console.error.bind(console, "connection error:"));
 connection.once("open", () => {
@@ -38,6 +37,9 @@ app.use(
     saveUninitialized: false
   })
 );
+
+// Passport init
+initializePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -47,6 +49,11 @@ app.use("/auth", require("./routes/authRoutes"));
 
 app.get("/", (req, res) => {
   res.send("hello world");
+});
+
+// Private test route
+app.get("/private", checkAuthenticated, (req, res) => {
+  res.send("This is a private route!");
 });
 
 // Listen

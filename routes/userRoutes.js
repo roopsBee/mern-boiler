@@ -2,6 +2,8 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const User = require("../models/UserModel");
+const { checkNotAuthenticated } = require("../middleware");
+
 const router = express.Router();
 
 // @route   POST /user
@@ -9,6 +11,7 @@ const router = express.Router();
 // @access  Public
 router.post(
   "/",
+  checkNotAuthenticated,
   [
     //express validator middleware
     check("name", "Name is required")

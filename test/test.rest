@@ -1,6 +1,4 @@
-
-// register a user
-
+### register a user
 POST  http://localhost:5000/user HTTP/1.1
 content-type: application/json
 
@@ -9,11 +7,41 @@ content-type: application/json
     "email": "errol@gmail.com",
     "password": "123456"
 }
+### register another user
+POST  http://localhost:5000/user HTTP/1.1
+content-type: application/json
 
-###
-// sign in user
+{
+    "name": "mickey",
+    "email": "mickey@gmail.com",
+    "password": "123456"
+}
 
+### sign in user
 POST  http://localhost:5000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "errol@gmail.com",
+    "password": "123456"
+}
+
+### sign in another user
+POST  http://localhost:5000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "mickey@gmail.com",
+    "password": "123456"
+}
+
+### logout user
+DELETE   http://localhost:5000/auth/logout HTTP/1.1
+content-type: application/json
+
+
+### private route test
+GET  http://localhost:5000/private HTTP/1.1
 content-type: application/json
 
 {
