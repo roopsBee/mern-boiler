@@ -1,8 +1,8 @@
 const express = require("express");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const { checkAuthenticated } = require("./middleware");
-
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -34,7 +34,8 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: connection })
   })
 );
 
