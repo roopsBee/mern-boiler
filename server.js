@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const helmet = require("helmet");
 const { checkAuthenticated } = require("./middleware");
 const app = express();
 const cors = require("cors");
@@ -28,6 +29,7 @@ connection.once("open", () => {
 });
 
 // middlewares
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(

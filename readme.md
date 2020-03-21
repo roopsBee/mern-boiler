@@ -5,5 +5,4 @@ Boiler plate for the API for a MERN stack app
 -Go through nodejs security checklist
 -Go through express performance checklist
 -sanitise inputs with express validator
--use helmet
--use snyx to test vulnerabilities -
+-use snyx to test vulnerabilities
