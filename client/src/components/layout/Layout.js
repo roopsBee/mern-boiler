@@ -12,11 +12,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import HomeIcon from "@material-ui/icons/Home";
-import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
 import { NavLink } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { drawerLinks, appName } from "./layoutConfig";
 
 const drawerWidth = 200;
 
@@ -72,37 +71,22 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const drawerLinks = [
-    {
-      icon: <HomeIcon />,
-      primary: "Home",
-      to: "/"
-    },
-    {
-      icon: <HomeIcon />,
-      primary: "About",
-      to: "/about"
-    }
-  ];
-
   const drawer = drawerLinks => {
     const drawerlinksRendered = drawerLinks.map((link, index) => {
       return (
-        <li>
-          <ListItem
-            component={NavLink}
-            to={link.to}
-            button
-            key={link.primary}
-            selected={selectedLink === index}
-            onClick={event => handleListItemClick(event, index)}
-          >
-            <ListItemIcon>
-              {link.icon ? <ListItemIcon>{link.icon}</ListItemIcon> : null}
-            </ListItemIcon>
-            <ListItemText primary={link.primary} />
-          </ListItem>
-        </li>
+        <ListItem
+          component={NavLink}
+          to={link.to}
+          button
+          key={link.primary}
+          selected={selectedLink === index}
+          onClick={event => handleListItemClick(event, index)}
+        >
+          <ListItemIcon>
+            {link.icon ? <ListItemIcon>{link.icon}</ListItemIcon> : null}
+          </ListItemIcon>
+          <ListItemText primary={`${index}  ${link.primary}`} />
+        </ListItem>
       );
     });
     return (
@@ -129,7 +113,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap>
-            {props.appName}
+            {appName}
           </Typography>
         </Toolbar>
       </AppBar>
