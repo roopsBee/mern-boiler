@@ -4,17 +4,17 @@ import React from "react";
 export const drawerLinks = [
   {
     icon: <HomeIcon />,
-    primary: "Home",
+    name: "Home",
     to: "/"
   },
   {
     icon: <HomeIcon />,
-    primary: "Register",
+    name: "Register",
     to: "/auth/register"
   },
   {
     icon: <HomeIcon />,
-    primary: "Login",
+    name: "Login",
     to: "/auth/login"
   }
 ];

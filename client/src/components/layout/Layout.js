@@ -6,6 +6,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -18,6 +19,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { drawerLinks, appName } from "./layoutConfig";
 
 const drawerWidth = 200;
+const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -78,14 +80,14 @@ function ResponsiveDrawer(props) {
           component={NavLink}
           to={link.to}
           button
-          key={link.primary}
+          key={link.name}
           selected={selectedLink === index}
           onClick={event => handleListItemClick(event, index)}
         >
           <ListItemIcon>
             {link.icon ? <ListItemIcon>{link.icon}</ListItemIcon> : null}
           </ListItemIcon>
-          <ListItemText primary={`${index}  ${link.primary}`} />
+          <ListItemText primary={link.name} />
         </ListItem>
       );
     });
@@ -119,11 +121,14 @@ function ResponsiveDrawer(props) {
       </AppBar>
       <nav className={classes.drawer} aria-label="Navigation">
         <Hidden smUp>
-          <Drawer
+          <SwipeableDrawer
+            disableBackdropTransition={!iOS}
+            disableDiscovery={iOS}
             container={container}
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
+            onOpen={handleDrawerToggle}
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper
@@ -133,7 +138,7 @@ function ResponsiveDrawer(props) {
             }}
           >
             {drawer(drawerLinks)}
-          </Drawer>
+          </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown>
           <Drawer
