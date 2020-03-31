@@ -54,7 +54,10 @@ router.post(
       await user.save();
 
       user.password = null;
-      res.status(200).json(user);
+      res.status(200).json({
+        message: "User Created",
+        severity: "success"
+      });
     } catch (error) {
       user.password = null;
       console.error(error.message);

@@ -72,7 +72,7 @@ export default function Login() {
                   "Content-Type": "application/json"
                 }
               };
-              const res = await axios
+              await axios
                 .post("http://localhost:5000/auth/login", user, config)
                 .then(res => console.log(res.data))
                 .catch(e => console.log(e));

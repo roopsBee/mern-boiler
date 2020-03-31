@@ -84,7 +84,7 @@ export default function Register() {
                   "Content-Type": "application/json"
                 }
               };
-              const res = await axios
+              await axios
                 .post("http://localhost:5000/user", newUser, config)
                 .then(res => console.log(res.data))
                 .catch(e => console.log(e));

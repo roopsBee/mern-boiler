@@ -9,6 +9,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import theme from "./components/themes/theme";
 import store from "./store";
+import Alerts from "./components/layout/Alerts";
 import "./App.css";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Router>
           <ThemeProvider theme={theme}>
             <Layout appName="My App">
+              <Alerts />
               <Route exact path="/" component={Home} />
               <Route exact path="/auth/login" component={Login} />
               <Route exact path="/auth/register" component={Register} />
