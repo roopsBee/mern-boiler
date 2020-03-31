@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
@@ -11,9 +11,14 @@ const MyAlerts = () => {
   const alerts = useSelector(state => state.alerts);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (alerts !== null && alerts.length > 0) {
+      setOpen(true);
+    }
+  }, [alerts]);
+
   const handleClick = () => {
     dispatch(setAlert("testing alerts", "success"));
-    setOpen(true);
   };
 
   const handleEnter = () => {
@@ -34,7 +39,6 @@ const MyAlerts = () => {
       setOpen(true);
     }
   };
-  console.log("render");
 
   return (
     <div>
