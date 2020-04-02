@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import { useSelector, useDispatch } from "react-redux";
-import { setAlert, deleteAlert } from "../../actions";
+import { deleteAlert } from "../../actions/alerts";
 
 const MyAlerts = () => {
   const [open, setOpen] = useState(false);
-  const [newAlert, setNewAlert] = useState({ message: "", severity: "" });
+  const [currentAlert, setCurrentAlert] = useState({
+    message: "",
+    severity: "success"
+  });
   const alerts = useSelector(state => state.alerts);
   const dispatch = useDispatch();
 
@@ -17,13 +19,9 @@ const MyAlerts = () => {
     }
   }, [alerts]);
 
-  const handleClick = () => {
-    dispatch(setAlert("testing alerts", "success"));
-  };
-
   const handleEnter = () => {
     const { message, severity } = alerts[0];
-    setNewAlert({ message, severity });
+    setCurrentAlert({ message, severity });
   };
 
   const handleClose = (event, reason) => {
@@ -42,13 +40,10 @@ const MyAlerts = () => {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClick}>
-        Open snackbar
-      </Button>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={open}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onEnter={handleEnter}
         onClose={handleClose}
         onExited={handleExited}
@@ -57,9 +52,9 @@ const MyAlerts = () => {
           elevation={10}
           variant="filled"
           onClose={handleClose}
-          severity={newAlert.severity}
+          severity={currentAlert.severity}
         >
-          {newAlert.message}
+          {currentAlert.message}
         </Alert>
       </Snackbar>
     </div>

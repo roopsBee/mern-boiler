@@ -29,8 +29,12 @@ function initialize(passport) {
   passport.serializeUser((user, done) => {
     return done(null, user.id);
   });
+
   passport.deserializeUser((id, done) => {
-    return done(null, User.findById(id));
+    return User.findById(id, (err, user) => {
+      user.password = null;
+      done(err, user);
+    });
   });
 }
 

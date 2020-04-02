@@ -13,7 +13,11 @@ router.post(
   checkNotAuthenticated,
   passport.authenticate("local"),
   (req, res) => {
-    return res.status(200).json(req.user);
+    const { name, email } = req.user;
+    const user = { name, email };
+    return res
+      .status(200)
+      .json({ message: "Login successful", severity: "success", user });
   }
 );
 

@@ -10,9 +10,12 @@ import {
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
 import * as yup from "yup";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import FormikValidationTextField from "../forms/FormikValidationTextField";
+import { setAlert } from "../../actions/alerts";
+import { logIn } from "../../actions/auth";
+import api from "../../api/api";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -52,6 +55,7 @@ const validationSchema = yup.object().shape({
 
 export default function Login() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <div className="Login">
@@ -65,17 +69,25 @@ export default function Login() {
               email: "",
               password: ""
             }}
-            onSubmit={async ({ email, password }) => {
+            onSubmit={({ email, password }, { setSubmitting }) => {
               const user = { email, password };
-              const config = {
-                headers: {
-                  "Content-Type": "application/json"
-                }
-              };
-              await axios
-                .post("http://localhost:5000/auth/login", user, config)
-                .then(res => console.log(res.data))
-                .catch(e => console.log(e));
+
+              api
+                .post("auth/login", user)
+                .then(({ data }) => {
+                  const { message, severity, user } = data;
+                  dispatch(setAlert(message, severity));
+                  dispatch(logIn(user));
+                  console.log(data);
+                })
+                .catch(error => {
+                  const { message, severity } = error.response.data;
+                  dispatch(setAlert(message, severity));
+                  console.log(error);
+                })
+                .then(() => {
+                  setSubmitting(false);
+                });
             }}
             validationSchema={validationSchema}
           >

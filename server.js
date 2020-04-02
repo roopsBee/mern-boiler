@@ -50,13 +50,15 @@ app.use(passport.session());
 app.use("/user", require("./routes/userRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 
-app.get("/", (req, res) => {
-  res.send("hello world");
+app.get("/", checkAuthenticated, (req, res) => {
+  res.status(200).json({ message: "You are logged in", severity: "info" });
 });
 
 // Private test route
 app.get("/private", checkAuthenticated, (req, res) => {
-  res.send("This is a private route!");
+  console.log(req.user);
+
+  res.status(200).json({ message: "this a private route" });
 });
 
 // Listen

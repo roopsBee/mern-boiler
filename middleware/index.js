@@ -10,18 +10,20 @@ middlewareObj.checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  return res.status(500).json({ msg: "incorrect credentials" });
+  return res.status(500).json({
+    message: "You are not logged in",
+    severity: "error"
+  });
 };
 
 middlewareObj.checkNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.status(500).json({ msg: "You are already logged in" });
+    return res.status(500).json({
+      message: "You are already logged in",
+      severity: "error"
+    });
   }
   return next();
 };
-
-middlewareObj.userExists = (req, res, next) => {};
-
-middlewareObj.validateEmail = (req, res, next) => {};
 
 module.exports = middlewareObj;

@@ -27,19 +27,24 @@ router.post(
     //if there are errors return array of errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({
+        message: "Input is invalid",
+        severity: "error",
+        errors: errors.array()
+      });
     }
 
     const { name, password } = req.body;
     try {
-      // Find user by email
+      // Find if user email already exists
       let email = req.body.email.toLowerCase();
       let user = await User.findOne({ email });
       // If user already exists return error array
       if (user) {
-        return res
-          .status(200)
-          .json({ errors: [{ msg: "User already exists" }] });
+        return res.status(400).json({
+          message: "Email already exists",
+          severity: "error"
+        });
       }
 
       // user does not exist and no errors create user
@@ -55,13 +60,13 @@ router.post(
 
       user.password = null;
       res.status(200).json({
-        message: "User Created",
+        message: `User "${user.name}" Created`,
         severity: "success"
       });
     } catch (error) {
       user.password = null;
       console.error(error.message);
-      res.status(500).send("server error");
+      res.status(500).json({ message: "server error", severity: "error" });
     }
   }
 );

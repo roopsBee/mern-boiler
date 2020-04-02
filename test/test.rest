@@ -44,7 +44,8 @@ content-type: application/json
 GET  http://localhost:5000/private HTTP/1.1
 content-type: application/json
 
-{
-    "email": "errol@gmail.com",
-    "password": "123456"
-}
+
+### home test
+GET  http://localhost:5000/ HTTP/1.1
+content-type: application/json
+

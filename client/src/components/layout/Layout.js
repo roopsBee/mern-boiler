@@ -15,6 +15,7 @@ import {
   Typography,
   useMediaQuery
 } from "@material-ui/core";
+import LinkIcon from "@material-ui/icons/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import { NavLink } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -68,10 +69,13 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleListItemClick = (event, index) => {
+  const handleListItemClick = (event, index, onClick) => {
     setSelectedLink(index);
     if (breakpointMatches) {
       handleDrawerToggle();
+    }
+    if (onClick) {
+      onClick();
     }
   };
 
@@ -80,15 +84,13 @@ function ResponsiveDrawer(props) {
       return (
         <ListItem
           component={NavLink}
-          to={link.to}
+          to={link.to ? link.to : ""}
           button
           key={link.name}
           selected={selectedLink === index}
-          onClick={event => handleListItemClick(event, index)}
+          onClick={event => handleListItemClick(event, index, link.onClick)}
         >
-          <ListItemIcon>
-            {link.icon ? <ListItemIcon>{link.icon}</ListItemIcon> : null}
-          </ListItemIcon>
+          <ListItemIcon>{link.icon ? link.icon : <LinkIcon />}</ListItemIcon>
           <ListItemText primary={link.name} />
         </ListItem>
       );
