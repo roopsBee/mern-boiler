@@ -29,8 +29,14 @@ connection.once("open", () => {
 });
 
 // middlewares
+const corsConfig = {
+  origin: true,
+  credentials: true
+};
+app.use(cors(corsConfig));
+app.options("*", cors(corsConfig));
+
 app.use(helmet());
-app.use(cors());
 app.use(express.json());
 app.use(
   session({
@@ -56,7 +62,7 @@ app.get("/", checkAuthenticated, (req, res) => {
 
 // Private test route
 app.get("/private", checkAuthenticated, (req, res) => {
-  console.log(req.user);
+  console.log("private route!");
 
   res.status(200).json({ message: "this a private route" });
 });

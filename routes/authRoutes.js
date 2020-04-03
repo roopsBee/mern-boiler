@@ -1,7 +1,7 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
-const { checkNotAuthenticated } = require("../middleware");
+const { checkNotAuthenticated, checkAuthenticated } = require("../middleware");
 
 const router = express.Router();
 
@@ -15,18 +15,34 @@ router.post(
   (req, res) => {
     const { name, email } = req.user;
     const user = { name, email };
+
     return res
       .status(200)
       .json({ message: "Login successful", severity: "success", user });
   }
 );
 
-// @route   POST /auth/logout
+// @route   DELETE /auth/logout
 // @desc    logout
 // @access  Public
-router.delete("/logout", (req, res) => {
+router.delete("/logout", checkAuthenticated, (req, res) => {
   req.logout();
-  res.status(200).json({ msg: "logged out" });
+  return res
+    .status(200)
+    .json({ message: "You have been logged out", severity: "success" });
+});
+
+// @route   DELETE /auth/isauth
+// @desc    is user authenticated
+// @access  Public
+router.get("/isauth", (req, res) => {
+  if (req.isAuthenticated()) {
+    const { name, email } = req.user;
+    const user = { name, email };
+    return res.status(200).json({ isAuthenticated: true, user });
+  } else {
+    return res.status(200).json({ isAuthenticated: false });
+  }
 });
 
 module.exports = router;
