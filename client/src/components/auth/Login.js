@@ -13,9 +13,7 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 
 import FormikValidationTextField from "../forms/FormikValidationTextField";
-import { setAlert } from "../../actions/alerts";
 import { logIn } from "../../actions/auth";
-import api from "../../api/api";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -71,23 +69,7 @@ export default function Login() {
             }}
             onSubmit={({ email, password }, { setSubmitting }) => {
               const user = { email, password };
-
-              api
-                .post("auth/login", user)
-                .then(({ data }) => {
-                  const { message, severity, user } = data;
-                  dispatch(setAlert(message, severity));
-                  dispatch(logIn(user));
-                  console.log(data);
-                })
-                .catch(error => {
-                  const { message, severity } = error.response.data;
-                  dispatch(setAlert(message, severity));
-                  console.log(error);
-                })
-                .then(() => {
-                  setSubmitting(false);
-                });
+              dispatch(logIn(user, () => setSubmitting(false)));
             }}
             validationSchema={validationSchema}
           >

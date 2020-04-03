@@ -10,11 +10,10 @@ import {
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
 import * as yup from "yup";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import FormikValidationTextField from "../forms/FormikValidationTextField";
-import { setAlert } from "../../actions/alerts";
+import { registerUser } from "../../actions/users";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -82,23 +81,12 @@ export default function Register() {
             }}
             onSubmit={({ name, email, password }, { setSubmitting }) => {
               const newUser = { name, email, password };
-              const config = {
-                headers: {
-                  "Content-Type": "application/json"
-                }
-              };
-              axios
-                .post("http://localhost:5000/user", newUser, config)
-                .then(({ data }) => {
-                  dispatch(setAlert(data.message, data.severity));
-                })
-                .catch(error => {
-                  const { message, severity } = error.response.data;
-                  dispatch(setAlert(message, severity));
-                })
-                .then(() => {
+
+              dispatch(
+                registerUser(newUser, () => {
                   setSubmitting(false);
-                });
+                })
+              );
             }}
             validationSchema={validationSchema}
           >

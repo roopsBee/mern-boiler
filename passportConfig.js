@@ -8,7 +8,7 @@ function initialize(passport) {
       email = email.toLowerCase();
       const user = await User.findOne({ email });
       if (!user) {
-        return done(null, false, { msg: "No user with that email" });
+        return done(null, false, { message: "invalid email" });
       }
 
       if (await bcrypt.compare(password, user.password)) {
@@ -18,7 +18,7 @@ function initialize(passport) {
       } else {
         user.password = null;
         password = null;
-        return done(null, false, { msg: "Password incorrect" });
+        return done(null, false, { message: "Incorrect password" });
       }
     } catch (error) {
       user.password = null;

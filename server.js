@@ -56,8 +56,8 @@ app.use(passport.session());
 app.use("/user", require("./routes/userRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 
-app.get("/", checkAuthenticated, (req, res) => {
-  res.status(200).json({ message: "You are logged in", severity: "info" });
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Hello World", severity: "success" });
 });
 
 // Private test route

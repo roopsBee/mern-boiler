@@ -2,6 +2,7 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const { checkNotAuthenticated, checkAuthenticated } = require("../middleware");
+const { invalidCredentials, loginSuccess, loggedOut } = require("./responses");
 
 const router = express.Router();
 
@@ -11,14 +12,14 @@ const router = express.Router();
 router.post(
   "/login",
   checkNotAuthenticated,
-  passport.authenticate("local"),
-  (req, res) => {
+  passport.authenticate("local", { failWithError: true }),
+  (req, res, next) => {
     const { name, email } = req.user;
     const user = { name, email };
-
-    return res
-      .status(200)
-      .json({ message: "Login successful", severity: "success", user });
+    return res.status(200).json({ ...loginSuccess, user });
+  },
+  (err, req, res, next) => {
+    return res.status(401).json(invalidCredentials);
   }
 );
 
@@ -27,12 +28,10 @@ router.post(
 // @access  Public
 router.delete("/logout", checkAuthenticated, (req, res) => {
   req.logout();
-  return res
-    .status(200)
-    .json({ message: "You have been logged out", severity: "success" });
+  return res.status(200).json(loggedOut);
 });
 
-// @route   DELETE /auth/isauth
+// @route   GET /auth/isauth
 // @desc    is user authenticated
 // @access  Public
 router.get("/isauth", (req, res) => {

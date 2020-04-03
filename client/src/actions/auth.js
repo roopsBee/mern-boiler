@@ -2,11 +2,21 @@ import { LOGIN, LOGOUT, AUTHENTICATE, DEAUTHENTICATE } from "./types";
 import api from "../api/api";
 import { setAlert } from "./alerts";
 
-export const logIn = ({ name, email }) => {
-  return {
-    type: LOGIN,
-    payload: { name, email }
-  };
+export const logIn = (userFormData, onComplete) => dispatch => {
+  api
+    .post("auth/login", userFormData)
+    .then(({ data }) => {
+      const { message, severity, user } = data;
+      dispatch(setAlert(message, severity));
+      dispatch({ type: LOGIN, payload: user });
+    })
+    .catch(error => {
+      const { message, severity } = error.response.data;
+      dispatch(setAlert(message, severity));
+    })
+    .then(() => {
+      onComplete();
+    });
 };
 
 export const logOut = () => dispatch => {
@@ -15,9 +25,7 @@ export const logOut = () => dispatch => {
     .then(({ data }) => {
       const { message, severity } = data;
       dispatch(setAlert(message, severity));
-      dispatch({
-        type: LOGOUT
-      });
+      dispatch({ type: LOGOUT });
     })
     .catch(error => {
       console.log(error);
