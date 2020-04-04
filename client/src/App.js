@@ -12,6 +12,8 @@ import theme from "./components/themes/theme";
 import store from "./store";
 import Alerts from "./components/layout/Alerts";
 import { isAuthenticated } from "./actions/auth";
+import PrivateRoute from "./components/auth/PrivateRoute";
+import Private from "./components/Private";
 import "./App.css";
 
 const App = () => {
@@ -29,6 +31,7 @@ const App = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/auth/login" component={Login} />
               <Route exact path="/auth/register" component={Register} />
+              <PrivateRoute exact path="/private" component={Private} />
             </Layout>
           </ThemeProvider>
         </Router>
