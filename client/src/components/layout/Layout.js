@@ -13,7 +13,7 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  useMediaQuery
+  useMediaQuery,
 } from "@material-ui/core";
 import LinkIcon from "@material-ui/icons/Link";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -24,37 +24,37 @@ import { drawerLinks, appName } from "./layoutConfig";
 const drawerWidth = 200;
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
-      flexShrink: 0
-    }
+      flexShrink: 0,
+    },
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth
-    }
+      marginLeft: drawerWidth,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
-  }
+    padding: theme.spacing(3),
+  },
 }));
 
 function ResponsiveDrawer(props) {
@@ -79,7 +79,7 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const drawer = drawerLinks => {
+  const drawer = (drawerLinks) => {
     const drawerlinksRendered = drawerLinks.map((link, index) => {
       return (
         <ListItem
@@ -88,7 +88,7 @@ function ResponsiveDrawer(props) {
           button
           key={link.name}
           selected={selectedLink === index}
-          onClick={event => handleListItemClick(event, index, link.onClick)}
+          onClick={(event) => handleListItemClick(event, index, link.onClick)}
         >
           <ListItemIcon>{link.icon ? link.icon : <LinkIcon />}</ListItemIcon>
           <ListItemText primary={link.name} />
@@ -135,10 +135,10 @@ function ResponsiveDrawer(props) {
             onOpen={handleDrawerToggle}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true, // Better open performance on mobile.
             }}
           >
             {drawer(drawerLinks)}
@@ -147,7 +147,7 @@ function ResponsiveDrawer(props) {
         <Hidden xsDown>
           <Drawer
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             variant="permanent"
             open

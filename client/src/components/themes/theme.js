@@ -1,25 +1,25 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { deepPurple, green } from "@material-ui/core/colors";
+import { red, blue } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   overrides: {
     MuiListItem: {
       button: {
         color: "red",
-        backgroundColor: "green",
+        backgroundColor: "cyan",
         "&$selected": {
-          backgroundColor: "blue"
+          backgroundColor: "green",
         },
         "&:hover": {
-          color: "purple",
-          backgroundColor: "pink"
-        }
-      }
-    }
+          color: "red",
+          backgroundColor: "green",
+        },
+      },
+    },
   },
   palette: {
-    primary: deepPurple,
-    secondary: green
-  }
+    primary: red,
+    secondary: blue,
+  },
 });
 export default theme;
