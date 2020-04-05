@@ -14,7 +14,6 @@ import Alerts from "./components/layout/Alerts";
 import { isAuthenticated } from "./actions/auth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Private from "./components/Private";
-import "./App.css";
 
 const App = () => {
   useEffect(() => {

@@ -9,28 +9,18 @@ export const drawerLinks = [
   {
     icon: <HomeIcon />,
     name: "Home",
-    to: "/"
-  },
-  {
-    icon: <HomeIcon />,
-    name: "Register",
-    to: "/auth/register"
-  },
-  {
-    icon: <HomeIcon />,
-    name: "Login",
-    to: "/auth/login"
+    to: "/",
   },
   {
     name: "Logout",
     onClick: () => {
       store.dispatch(logOut());
-    }
+    },
   },
   {
     name: "private",
-    to: "/private"
-  }
+    to: "/private",
+  },
 ];
 
 export const appName = "My Apps";

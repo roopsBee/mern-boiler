@@ -2,24 +2,24 @@ import React from "react";
 import {
   AppBar,
   CssBaseline,
-  Divider,
   Drawer,
   Hidden,
   IconButton,
-  List,
   SwipeableDrawer,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Typography,
   useMediaQuery,
+  Button,
 } from "@material-ui/core";
-import LinkIcon from "@material-ui/icons/Link";
 import MenuIcon from "@material-ui/icons/Menu";
-import { NavLink } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 import { drawerLinks, appName } from "./layoutConfig";
+import drawerItems from "./drawerItems";
+import { NavLink } from "react-router-dom";
+import store from "../../store";
+import { logOut } from "../../actions/auth";
+import ShowHide from "../auth/ShowHide";
 
 const drawerWidth = 200;
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
+  title: {
+    flexGrow: 1,
+  },
+
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
@@ -64,6 +68,7 @@ function ResponsiveDrawer(props) {
   const breakpointMatches = useMediaQuery(theme.breakpoints.down("xs"));
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedLink, setSelectedLink] = React.useState(0);
+  let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -79,30 +84,12 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const drawer = (drawerLinks) => {
-    const drawerlinksRendered = drawerLinks.map((link, index) => {
-      return (
-        <ListItem
-          component={NavLink}
-          to={link.to ? link.to : ""}
-          button
-          key={link.name}
-          selected={selectedLink === index}
-          onClick={(event) => handleListItemClick(event, index, link.onClick)}
-        >
-          <ListItemIcon>{link.icon ? link.icon : <LinkIcon />}</ListItemIcon>
-          <ListItemText primary={link.name} />
-        </ListItem>
-      );
-    });
-    return (
-      <div>
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>{drawerlinksRendered}</List>
-      </div>
-    );
-  };
+  const drawer = drawerItems(
+    drawerLinks,
+    selectedLink,
+    handleListItemClick,
+    classes
+  );
 
   return (
     <div className={classes.root}>
@@ -118,9 +105,30 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" noWrap>
+          <Typography variant="h5" noWrap className={classes.title}>
             {appName}
           </Typography>
+
+          <ShowHide
+            isLoggedIn={isLoggedIn}
+            showIfLoggedOut={true}
+            showIfLoggedIn={false}
+          >
+            <Button component={NavLink} to="/auth/register" color="inherit">
+              Register
+            </Button>
+            <Button component={NavLink} color="inherit" to="/auth/login">
+              Login
+            </Button>
+          </ShowHide>
+          <Button
+            color="inherit"
+            onClick={() => {
+              store.dispatch(logOut());
+            }}
+          >
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="Navigation">
@@ -141,7 +149,7 @@ function ResponsiveDrawer(props) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {drawer(drawerLinks)}
+            {drawer}
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown>
@@ -152,7 +160,7 @@ function ResponsiveDrawer(props) {
             variant="permanent"
             open
           >
-            <div className={classes.toolbar}>{drawer(drawerLinks)}</div>
+            <div className={classes.toolbar}>{drawer}</div>
           </Drawer>
         </Hidden>
       </nav>
