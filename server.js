@@ -19,7 +19,7 @@ const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 // Show connected to database or error
 const connection = mongoose.connection;
@@ -31,7 +31,7 @@ connection.once("open", () => {
 // middlewares
 const corsConfig = {
   origin: true,
-  credentials: true
+  credentials: true,
 };
 app.use(cors(corsConfig));
 app.options("*", cors(corsConfig));
@@ -43,7 +43,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: connection })
+    store: new MongoStore({ mongooseConnection: connection }),
   })
 );
 
@@ -55,6 +55,7 @@ app.use(passport.session());
 //routes
 app.use("/user", require("./routes/userRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
+app.use("/list", require("./routes/listRoutes"));
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello World", severity: "success" });

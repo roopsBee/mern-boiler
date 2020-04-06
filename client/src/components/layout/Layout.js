@@ -109,11 +109,7 @@ function ResponsiveDrawer(props) {
             {appName}
           </Typography>
 
-          <ShowHide
-            isLoggedIn={isLoggedIn}
-            showIfLoggedOut={true}
-            showIfLoggedIn={false}
-          >
+          <ShowHide isLoggedIn={isLoggedIn} showIfLoggedIn={false}>
             <Button component={NavLink} to="/auth/register" color="inherit">
               Register
             </Button>
@@ -121,14 +117,16 @@ function ResponsiveDrawer(props) {
               Login
             </Button>
           </ShowHide>
-          <Button
-            color="inherit"
-            onClick={() => {
-              store.dispatch(logOut());
-            }}
-          >
-            Logout
-          </Button>
+          <ShowHide isLoggedIn={isLoggedIn} showIfLoggedOut={false}>
+            <Button
+              color="inherit"
+              onClick={() => {
+                store.dispatch(logOut());
+              }}
+            >
+              Logout
+            </Button>
+          </ShowHide>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="Navigation">

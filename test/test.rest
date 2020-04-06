@@ -1,4 +1,4 @@
-### register a user
+### register errol
 POST  http://localhost:5000/user HTTP/1.1
 content-type: application/json
 
@@ -7,7 +7,7 @@ content-type: application/json
     "email": "errol@gmail.com",
     "password": "123456"
 }
-### register another user
+### register mickey
 POST  http://localhost:5000/user HTTP/1.1
 content-type: application/json
 
@@ -17,7 +17,7 @@ content-type: application/json
     "password": "123456"
 }
 
-### sign in user
+### sign in errol
 POST  http://localhost:5000/auth/login HTTP/1.1
 content-type: application/json
 
@@ -26,7 +26,7 @@ content-type: application/json
     "password": "123456"
 }
 
-### sign in another user
+### sign in roops
 POST  http://localhost:5000/auth/login HTTP/1.1
 content-type: application/json
 
@@ -56,3 +56,54 @@ content-type: application/json
 ### register test
 POST   http://localhost:5000/user HTTP/1.1
 content-type: application/json
+
+
+### LISTS
+
+### view lists
+GET   http://localhost:5000/list HTTP/1.1
+content-type: application/json
+
+
+### create list
+POST   http://localhost:5000/list HTTP/1.1
+content-type: application/json
+
+{
+    "name":"errols ultra list"
+}
+
+### get single list
+GET    http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+content-type: application/json
+
+### update name of list
+PATCH http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+content-type: application/json
+
+{
+    "name":"edited lists"
+}
+
+### create list item
+PATCH http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+content-type: application/json
+
+{
+    "item":{
+        "done":false,
+        "text":"bye"
+    }
+}
+
+### edit list item by passing _id
+PATCH http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+content-type: application/json
+
+{
+    "item":{
+        "_id":"5e8baa9b02ddbe3b648cc1b2",
+        "done":false,
+        "text":"ballooooon"
+    }
+}

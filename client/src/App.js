@@ -14,6 +14,7 @@ import Alerts from "./components/layout/Alerts";
 import { isAuthenticated } from "./actions/auth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Private from "./components/Private";
+import LoggedOutRoute from "./components/auth/LoggedOutRoute";
 
 const App = () => {
   useEffect(() => {
@@ -28,8 +29,12 @@ const App = () => {
             <Layout appName="My App">
               <Alerts />
               <Route exact path="/" component={Home} />
-              <Route exact path="/auth/login" component={Login} />
-              <Route exact path="/auth/register" component={Register} />
+              <LoggedOutRoute exact path="/auth/login" component={Login} />
+              <LoggedOutRoute
+                exact
+                path="/auth/register"
+                component={Register}
+              />
               <PrivateRoute exact path="/private" component={Private} />
             </Layout>
           </ThemeProvider>
