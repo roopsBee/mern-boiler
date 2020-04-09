@@ -7,6 +7,16 @@ content-type: application/json
     "email": "errol@gmail.com",
     "password": "123456"
 }
+
+### register don
+POST  http://localhost:5000/user HTTP/1.1
+content-type: application/json
+
+{
+    "name": "",
+    "email": "don@",
+    "password": "12456"
+}
 ### register mickey
 POST  http://localhost:5000/user HTTP/1.1
 content-type: application/json
@@ -70,11 +80,11 @@ POST   http://localhost:5000/list HTTP/1.1
 content-type: application/json
 
 {
-    "name":"errols ultra list"
+    "name":"errols gh list"
 }
 
 ### get single list
-GET    http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+GET    http://localhost:5000/list/5e8e2a23cdb7fc4b3c72cf94 HTTP/1.1
 content-type: application/json
 
 ### update name of list
@@ -86,24 +96,35 @@ content-type: application/json
 }
 
 ### create list item
-PATCH http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+POST http://localhost:5000/list/5e8e2a23cdb7fc4b3c72cf94/item HTTP/1.1
 content-type: application/json
 
 {
-    "item":{
-        "done":false,
-        "text":"bye"
-    }
+        "text":"hey micket"
 }
 
 ### edit list item by passing _id
-PATCH http://localhost:5000/list/5e8baa4802ddbe3b648cc1af HTTP/1.1
+PATCH http://localhost:5000/list/5e8baa5002ddbe3b648cc1b0/item/5e8e0e3b789afc0534418768 HTTP/1.1
+content-type: application/json
+
+{   
+        "_id":"5e8e0e3b789afc0534418768",
+        "done":false,
+        "text":"errols five"
+}
+
+### delete list by passing id
+DELETE  http://localhost:5000/list/5e8c9f8c3edfad0a987bdd73 HTTP/1.1
 content-type: application/json
 
 {
-    "item":{
-        "_id":"5e8baa9b02ddbe3b648cc1b2",
-        "done":false,
-        "text":"ballooooon"
-    }
+    "_id":"5e8c9f8c3edfad0a987bdd73"    
+}
+
+### delete item by passing item id
+DELETE  http://localhost:5000/list/5e8e2a23cdb7fc4b3c72cf94/item/5e8e2a39cdb7fc4b3c72cf96 HTTP/1.1
+content-type: application/json
+
+{
+        "_id":"5e8e2a39cdb7fc4b3c72cf96"
 }

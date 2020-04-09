@@ -1,4 +1,4 @@
-// severity: error/info/success/warning - alert/flash message type shown
+// severity: error/info/success/warning - indicates type of flash message shown
 const responses = {};
 
 responses.invalidCredentials = {
@@ -14,11 +14,6 @@ responses.loginSuccess = {
 responses.loggedOut = {
   message: "You have been logged out",
   severity: "success",
-};
-
-responses.registerFormInputError = {
-  message: "Input is invalid",
-  severity: "error",
 };
 
 responses.registerEmailExists = {
@@ -66,6 +61,29 @@ responses.notOwnerOfList = {
 
 responses.listNotFound = {
   message: "List not found",
+  severity: "error",
+};
+
+responses.listDeleted = {
+  message: "List has been deleted",
+  severity: "success",
+};
+
+// items
+
+responses.itemDeleted = {
+  message: "Item has been deleted",
+  severity: "success",
+};
+
+responses.invalidRequest = {
+  message: "Invalid request",
+  severity: "error",
+};
+
+//validation
+responses.validationError = {
+  message: "Data did not pass validation",
   severity: "error",
 };
 

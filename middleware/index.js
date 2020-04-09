@@ -6,6 +6,7 @@ const {
   serverError,
   notOwnerOfList,
   listNotFound,
+  validationError,
 } = require("../routes/responses");
 
 //all middleware goes here
@@ -32,6 +33,7 @@ middlewareObj.checkNotAuthenticated = (req, res, next) => {
 
 middlewareObj.isListExistsAndOwner = async (req, res, next) => {
   const listId = req.params.id;
+
   try {
     const list = await List.findOne({ _id: listId });
     // check if list exits
@@ -48,6 +50,17 @@ middlewareObj.isListExistsAndOwner = async (req, res, next) => {
     console.log(error);
     res.status(500).json(serverError);
   }
+};
+
+middlewareObj.checkValidationErrors = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      ...validationError,
+      errors: errors.array(),
+    });
+  }
+  return next();
 };
 
 module.exports = middlewareObj;

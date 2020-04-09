@@ -20,6 +20,7 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 // Show connected to database or error
 const connection = mongoose.connection;
@@ -56,16 +57,10 @@ app.use(passport.session());
 app.use("/user", require("./routes/userRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/list", require("./routes/listRoutes"));
+app.use("/list/:id/item", require("./routes/itemRoutes"));
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello World", severity: "success" });
-});
-
-// Private test route
-app.get("/private", checkAuthenticated, (req, res) => {
-  console.log("private route!");
-
-  res.status(200).json({ message: "this a private route" });
 });
 
 // Listen
