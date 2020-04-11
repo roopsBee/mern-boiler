@@ -1,6 +1,7 @@
 import { LOGIN, LOGOUT, AUTHENTICATE, DEAUTHENTICATE } from "./types";
 import api from "../api/api";
 import { setAlert } from "./alerts";
+import { handleError } from "./actionHelpers";
 
 export const logIn = (userFormData, onComplete) => (dispatch) => {
   let isLoggedin = false;
@@ -13,9 +14,8 @@ export const logIn = (userFormData, onComplete) => (dispatch) => {
       isLoggedin = true;
     })
     .catch((error) => {
-      console.log(error.response);
-      const { message, severity, user } = error.response.data;
-      dispatch(setAlert(message, severity));
+      handleError(error);
+      const { user } = error.response.data;
       if (user) {
         dispatch({ type: LOGIN, payload: user });
       }
@@ -34,9 +34,7 @@ export const logOut = () => (dispatch) => {
       dispatch({ type: LOGOUT });
     })
     .catch((error) => {
-      console.log(error);
-      const { message, severity } = error.response.data;
-      dispatch(setAlert(message, severity));
+      handleError(error);
     });
 };
 

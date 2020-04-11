@@ -9,10 +9,6 @@ export const drawerLinks = [
     name: "Home",
     to: "/",
   },
-  {
-    name: "private",
-    to: "/private",
-  },
 ];
 
 export const appName = "My Apps";

@@ -1,5 +1,5 @@
 const ShowHide = ({
-  isLoggedIn = false,
+  isLoggedIn = false, // point to isLoggedin state
   showIfLoggedIn = true,
   showIfLoggedOut = true,
   getAuthlevel = "all",

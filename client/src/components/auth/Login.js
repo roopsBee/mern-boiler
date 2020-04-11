@@ -5,7 +5,7 @@ import {
   Paper,
   Container,
   Typography,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,26 +16,26 @@ import { useHistory, useLocation } from "react-router-dom";
 import FormikValidationTextField from "../forms/FormikValidationTextField";
 import { logIn } from "../../actions/auth";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     margin: theme.spacing(1, 0, 1),
     padding: theme.spacing(0, 2),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     marginTop: theme.spacing(3),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    textAlign: "center"
+    textAlign: "center",
   },
   submit: {
-    margin: theme.spacing(3, 0, 3, 0)
-  }
+    margin: theme.spacing(3, 0, 3, 0),
+  },
 }));
 
 const validationSchema = yup.object().shape({
@@ -49,7 +49,7 @@ const validationSchema = yup.object().shape({
     .string()
     .min(6, "Password must be atleast 6 characters long")
     .max(20)
-    .required("Password is required")
+    .required("Password is required"),
 });
 
 export default function Login() {
@@ -60,7 +60,6 @@ export default function Login() {
   let location = useLocation();
 
   let { from } = location.state || { from: { pathname: "/" } };
-  console.log(location);
 
   return (
     <div className="Login">
@@ -72,12 +71,12 @@ export default function Login() {
           <Formik
             initialValues={{
               email: "",
-              password: ""
+              password: "",
             }}
             onSubmit={({ email, password }, { setSubmitting }) => {
               const user = { email, password };
               dispatch(
-                logIn(user, isLoggedIn => {
+                logIn(user, (isLoggedIn) => {
                   setSubmitting(false);
                   if (isLoggedIn) history.replace(from);
                 })

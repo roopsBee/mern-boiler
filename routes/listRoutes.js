@@ -1,5 +1,5 @@
 const express = require("express");
-const { check, validationResult } = require("express-validator");
+const { check } = require("express-validator");
 
 const {
   checkAuthenticated,
@@ -50,7 +50,7 @@ router.post(
       );
 
       if (isName) {
-        return res.status(200).json(nameExists);
+        return res.status(400).json(nameExists);
       }
 
       list = new List(newList);
@@ -71,7 +71,9 @@ router.get(
   checkAuthenticated,
   isListExistsAndOwner,
   async (req, res) => {
-    res.status(200).json(req.list);
+    const { name, _id, items } = req.list;
+    list = { name, _id, items };
+    res.status(200).json({ list });
   }
 );
 

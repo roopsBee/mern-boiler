@@ -13,6 +13,5 @@ const ListSchema = new mongoose.Schema({
     },
   ],
 });
-children: [{ name: "string" }];
 
 module.exports = List = mongoose.model("list", ListSchema);

@@ -12,9 +12,9 @@ import theme from "./components/themes/theme";
 import store from "./store";
 import Alerts from "./components/layout/Alerts";
 import { isAuthenticated } from "./actions/auth";
-import PrivateRoute from "./components/auth/PrivateRoute";
-import Private from "./components/Private";
 import LoggedOutRoute from "./components/auth/LoggedOutRoute";
+import CreateList from "./components/CreateList";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 const App = () => {
   useEffect(() => {
@@ -35,7 +35,7 @@ const App = () => {
                 path="/auth/register"
                 component={Register}
               />
-              <PrivateRoute exact path="/private" component={Private} />
+              <PrivateRoute exact path="/list/create" component={CreateList} />
             </Layout>
           </ThemeProvider>
         </Router>
