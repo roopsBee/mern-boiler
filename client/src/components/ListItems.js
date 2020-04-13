@@ -9,13 +9,14 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSelector, useDispatch } from "react-redux";
 import { updateItem, deleteItem } from "../actions/item";
+import { setAlert } from "../actions/alerts";
 
 function ListItems({ listId }) {
   const list = useSelector((state) => state.currentList);
   const dispatch = useDispatch();
   let [textField, setTextField] = useState({});
   let [done, setDone] = useState({});
-  let onFocusValue = "";
+  const [focusValue, setFocusValue] = useState("");
 
   useEffect(() => {
     list.items.forEach(({ text, _id, done }) => {
@@ -29,9 +30,14 @@ function ListItems({ listId }) {
   };
 
   const handleBlur = (event, _id) => {
-    if (onFocusValue !== textField[_id]) {
-      let item = { text: textField[_id], done: done[_id], _id };
-      dispatch(updateItem(listId, item));
+    if (focusValue !== textField[_id]) {
+      if (textField[_id] === "") {
+        dispatch(setAlert("List Name cannot be empty", "error"));
+        setTextField((state) => ({ ...state, [_id]: focusValue }));
+      } else {
+        let item = { text: textField[_id], done: done[_id], _id };
+        dispatch(updateItem(listId, item));
+      }
     }
   };
 
@@ -69,8 +75,8 @@ function ListItems({ listId }) {
             onBlur={(event) => {
               handleBlur(event, _id);
             }}
-            onFocus={(e) => {
-              onFocusValue = e.target.value;
+            onFocus={(event) => {
+              setFocusValue(event.target.value);
             }}
           />
         </Grid>

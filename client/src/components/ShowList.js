@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
-import {
-  Container,
-  Paper,
-  Typography,
-  Grid,
-  makeStyles,
-  List,
-} from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
+import { Container, Paper, Grid, makeStyles, List } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { getList } from "../actions/lists";
 import AddItem from "./AddItem";
 import ListItems from "./ListItems";
+import ListName from "./ListName";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -20,16 +14,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  icon: {
-    color: "green",
-  },
 }));
 
 const ShowList = (props) => {
   const listId = props.match.params.id;
   const dispatch = useDispatch();
   const classes = useStyles();
-  const list = useSelector((state) => state.currentList);
 
   useEffect(() => {
     dispatch(getList(listId));
@@ -39,15 +29,11 @@ const ShowList = (props) => {
     <Container maxWidth="xs">
       <Paper elevation={5} className={classes.paper}>
         <Grid container justify="center" alignItems="center">
-          <Grid item xs={12}>
-            <Typography align="center" variant="h5">
-              {list.name}
-            </Typography>
-            <List>
-              <ListItems listId={listId} />
-              <AddItem listId={listId} />
-            </List>
-          </Grid>
+          <ListName listId={listId} />
+          <List>
+            <ListItems listId={listId} />
+            <AddItem listId={listId} />
+          </List>
         </Grid>
       </Paper>
     </Container>

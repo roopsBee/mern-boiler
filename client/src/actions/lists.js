@@ -7,8 +7,7 @@ export const getLists = () => (dispatch) => {
   api
     .get("/list")
     .then(({ data }) => {
-      const { message, severity, lists } = data;
-      dispatch(setAlert(message, severity));
+      const { lists } = data;
       dispatch({ type: GET_LISTS, payload: lists });
     })
     .catch((error) => {
@@ -44,5 +43,18 @@ export const getList = (_id) => (dispatch) => {
     })
     .catch((error) => {
       handleError(error);
+    });
+};
+
+export const updateListName = (listId, name) => (dispatch) => {
+  api
+    .patch(`/list/${listId}`, { name })
+    .then(({ data }) => {
+      const { list } = data;
+      dispatch({ type: GET_LIST, payload: list });
+      dispatch(getLists());
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
