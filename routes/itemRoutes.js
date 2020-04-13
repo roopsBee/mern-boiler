@@ -26,7 +26,7 @@ router.post(
     try {
       list.items.push(newItem);
       await list.save();
-      return res.status(200).json(list);
+      return res.status(200).json({ list });
     } catch (error) {
       console.log(error);
       return res.status(500).json(serverError);
@@ -57,8 +57,7 @@ router.patch(
         { $set: { "items.$": newItem } },
         { new: true }
       );
-
-      res.status(200).json(list);
+      res.status(200).json({ list });
     } catch (error) {
       console.log(error);
       return res.status(500).json(serverError);
@@ -73,14 +72,12 @@ router.delete(
   "/:itemid",
   checkAuthenticated,
   isListExistsAndOwner,
-  check("_id", "Id is requied").not().isEmpty(),
-  checkValidationErrors,
   async (req, res) => {
     const list = req.list;
     try {
-      list.items.pull(req.body._id);
+      list.items.pull(req.params.itemid);
       list.save();
-      return res.status(200).json({ ...itemDeleted, list });
+      return res.status(200).json({ list });
     } catch (error) {
       console.log(error);
       return res.status(500).json(serverError);

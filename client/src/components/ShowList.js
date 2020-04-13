@@ -9,13 +9,13 @@ import {
   IconButton,
   TextField,
   List,
+  Checkbox,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { useSelector, useDispatch } from "react-redux";
 import { getList } from "../actions/lists";
-import { handleError } from "../actions/actionHelpers";
+import AddItem from "./AddItem";
+import { updateItem, deleteItem } from "../actions/item";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,14 +36,17 @@ const ShowList = (props) => {
   const classes = useStyles();
   const list = useSelector((state) => state.currentList);
   let [textField, setTextField] = useState({});
+  let [done, setDone] = useState({});
+  let onFocusValue = "";
 
   useEffect(() => {
     dispatch(getList(listId));
   }, [listId, dispatch]);
 
   useEffect(() => {
-    list.items.forEach(({ text, id }) => {
-      setTextField((state) => ({ ...state, [id]: text }));
+    list.items.forEach(({ text, _id, done }) => {
+      setTextField((state) => ({ ...state, [_id]: text }));
+      setDone((state) => ({ ...state, [_id]: done }));
     });
   }, [list]);
 
@@ -51,35 +54,59 @@ const ShowList = (props) => {
     setTextField({ ...textField, [id]: event.target.value });
   };
 
-  const handleBlur = (event, id) => {
-    console.log("blur");
+  const handleBlur = (event, _id) => {
+    if (onFocusValue !== textField[_id]) {
+      let item = { text: textField[_id], done: done[_id], _id };
+      dispatch(updateItem(listId, item));
+    }
   };
 
-  let items = list.items.map(({ id, text, done }, index) => {
+  const handleClickDelete = (event, id) => {
+    dispatch(deleteItem(listId, id));
+  };
+
+  const handleClickCheckBox = (event, _id) => {
+    setDone((state) => ({ ...state, [_id]: !done[_id] }));
+    let item = { text: textField[_id], done: !done[_id], _id };
+    dispatch(updateItem(listId, item));
+  };
+
+  let items = list.items.map(({ _id }, index) => {
     return (
-      <ListItem key={id || index}>
+      <ListItem dense key={_id || index}>
         <Grid item>
-          <IconButton>
-            <DeleteIcon fontSize="large" />
+          <IconButton
+            onClick={(event) => {
+              handleClickDelete(event, _id);
+            }}
+          >
+            <DeleteIcon />
           </IconButton>
         </Grid>
         <Grid item xs={8}>
           <TextField
+            margin="none"
             fullWidth
             multiline
-            value={textField[id] || ""}
+            value={textField[_id] || ""}
             onChange={(event) => {
-              handleChange(event, id);
+              handleChange(event, _id);
             }}
             onBlur={(event) => {
-              handleBlur(event, id);
+              handleBlur(event, _id);
+            }}
+            onFocus={(e) => {
+              onFocusValue = e.target.value;
             }}
           />
         </Grid>
         <Grid item>
-          <IconButton>
-            <CheckBoxIcon className={classes.icon} fontSize="large" />
-          </IconButton>
+          <Checkbox
+            checked={done[_id] || false}
+            onClick={(event) => {
+              handleClickCheckBox(event, _id);
+            }}
+          />
         </Grid>
       </ListItem>
     );
@@ -93,7 +120,10 @@ const ShowList = (props) => {
             <Typography align="center" variant="h5">
               {list.name}
             </Typography>
-            <List>{items}</List>
+            <List>
+              {items}
+              <AddItem listId={listId} />
+            </List>
           </Grid>
         </Grid>
       </Paper>

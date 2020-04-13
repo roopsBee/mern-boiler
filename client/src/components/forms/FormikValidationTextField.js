@@ -6,23 +6,23 @@ import { makeStyles } from "@material-ui/core/styles";
 const successStyle = makeStyles({
   success: {
     "& label.Mui-focused": {
-      color: "green"
+      color: "green",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "green"
+      borderBottomColor: "green",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "green"
+        borderColor: "green",
       },
       "&:hover fieldset": {
-        borderColor: "green"
+        borderColor: "green",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "green"
-      }
-    }
-  }
+        borderColor: "green",
+      },
+    },
+  },
 });
 
 const FormikValidationTextField = ({ ...props }) => {
@@ -42,7 +42,7 @@ const FormikValidationTextField = ({ ...props }) => {
       error={!!helperText}
       helperText={helperText}
       className={classNames}
-      variant="outlined"
+      variant={props.variant || "outlined"}
     />
   );
 };
