@@ -58,3 +58,17 @@ export const updateListName = (listId, name) => (dispatch) => {
       console.log(error);
     });
 };
+
+export const deleteList = (listId, onSuccess) => (dispatch) => {
+  api
+    .delete(`/list/${listId}`)
+    .then(({ data }) => {
+      const { message, severity } = data;
+      dispatch(getLists());
+      dispatch(setAlert(message, severity));
+      onSuccess();
+    })
+    .catch((error) => {
+      handleError(error);
+    });
+};

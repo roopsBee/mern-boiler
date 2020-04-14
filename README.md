@@ -17,6 +17,7 @@ have loading:bool state for when fetching data
 create disableOnLoading wrapper component
 create wait wrapper component to wait until action is complete before rendering children
 
--add single list view -delete list -edit list name
+-add single list view -delete list
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately.
+-set selected list item on page load

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { Grid, TextField, IconButton } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment } from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { useState } from "react";
 import { updateListName } from "../actions/lists";
 import { setAlert } from "../actions/alerts";
+import DeleteListButton from "./DeleteListButton";
 
 const ListName = ({ listId }) => {
   const dispatch = useDispatch();
@@ -35,9 +35,7 @@ const ListName = ({ listId }) => {
   return (
     <Fragment>
       <Grid item>
-        <IconButton>
-          <DeleteIcon />
-        </IconButton>
+        <DeleteListButton listId={listId} />
       </Grid>
       <Grid item xs={9}>
         <TextField
