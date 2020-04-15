@@ -2,10 +2,12 @@ import React from "react";
 import { ListItem, ListItemText, ListItemIcon } from "@material-ui/core";
 import LinkIcon from "@material-ui/icons/Link";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const AddList = ({ index, handleListItemClick, selectedLink }) => {
+const AddList = ({ handleListItemClick }) => {
+  const location = useLocation();
   const onClick = (event) => {
-    handleListItemClick(event, index);
+    handleListItemClick(event);
   };
   return (
     <ListItem
@@ -13,7 +15,7 @@ const AddList = ({ index, handleListItemClick, selectedLink }) => {
       to="/list/create"
       button
       key="add new list"
-      selected={selectedLink === index}
+      selected={location.pathname === `/list/create` ? true : false}
       onClick={(event) => onClick(event)}
     >
       <ListItemIcon>

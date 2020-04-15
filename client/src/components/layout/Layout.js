@@ -14,12 +14,12 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import { drawerLinks, appName } from "./layoutConfig";
 import drawerItems from "./drawerItems";
 import { NavLink } from "react-router-dom";
 import store from "../../store";
 import { logOut } from "../../actions/auth";
 import ShowHide from "../auth/ShowHide";
+import { APP_NAME } from "../../config";
 
 const drawerWidth = 200;
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -67,15 +67,13 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const breakpointMatches = useMediaQuery(theme.breakpoints.down("xs"));
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedLink, setSelectedLink] = React.useState(0);
   let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleListItemClick = (event, index, onClick) => {
-    setSelectedLink(index);
+  const handleListItemClick = (event, onClick) => {
     if (breakpointMatches) {
       handleDrawerToggle();
     }
@@ -84,12 +82,7 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const drawer = drawerItems(
-    drawerLinks,
-    selectedLink,
-    handleListItemClick,
-    classes
-  );
+  const drawer = drawerItems(handleListItemClick, classes);
 
   return (
     <div className={classes.root}>
@@ -106,7 +99,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap className={classes.title}>
-            {appName}
+            {APP_NAME}
           </Typography>
 
           <ShowHide isLoggedIn={isLoggedIn} showIfLoggedIn={false}>
@@ -136,7 +129,7 @@ function ResponsiveDrawer(props) {
             disableDiscovery={iOS}
             container={container}
             variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
+            anchor="left"
             open={mobileOpen}
             onOpen={handleDrawerToggle}
             onClose={handleDrawerToggle}
