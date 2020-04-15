@@ -3,7 +3,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Popper, Button, IconButton } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { deleteList } from "../actions/lists";
+import { deleteList } from "../../actions/lists";
 
 function DeleteListButton({ listId }) {
   const [open, setOpen] = useState(false);

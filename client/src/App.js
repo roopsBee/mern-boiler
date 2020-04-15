@@ -6,17 +6,17 @@ import { useEffect } from "react";
 import { Switch } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
-import Home from "./components/Home";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
+import Home from "./components/views/Home";
+import Login from "./components/views/Login";
+import Register from "./components/views/Register";
 import theme from "./components/themes/theme";
 import store from "./store";
 import Alerts from "./components/layout/Alerts";
 import { isAuthenticated } from "./actions/auth";
 import LoggedOutRoute from "./components/auth/LoggedOutRoute";
-import CreateList from "./components/CreateList";
+import CreateList from "./components/views/CreateList";
 import PrivateRoute from "./components/auth/PrivateRoute";
-import ShowList from "./components/ShowList";
+import ShowList from "./components/views/ShowList";
 
 const App = () => {
   useEffect(() => {

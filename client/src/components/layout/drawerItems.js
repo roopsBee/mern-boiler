@@ -3,7 +3,6 @@ import { Divider, List } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import LinkIcon from "@material-ui/icons/Link";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { getLists } from "../../actions/lists";
 import ShowHide from "../auth/ShowHide";
 import DrawerItem from "./DrawerItem";
@@ -12,7 +11,6 @@ const DrawerItems = (handleListItemClick, classes) => {
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.lists);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const location = useLocation();
 
   useEffect(() => {
     if (isLoggedIn) {

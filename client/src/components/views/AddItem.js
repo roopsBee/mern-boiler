@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import { IconButton, ListItem } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 
-import FormikValidationTextField from "./forms/FormikValidationTextField";
-import { addItem } from "../actions/item";
+import FormikValidationTextField from "../forms/FormikValidationTextField";
+import { addItem } from "../../actions/item";
 
 const useStyles = makeStyles((theme) => ({
   root: {

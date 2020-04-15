@@ -15,6 +15,6 @@ Boiler plate for a MERN stack / todo list app
 have loggingin:bool state for async logging action
 have loading:bool state for when fetching data
 create disableOnLoading wrapper component
-create wait wrapper component to wait until action is complete before rendering children
+create async wait wrapper component to wait until action is complete before rendering children
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately.

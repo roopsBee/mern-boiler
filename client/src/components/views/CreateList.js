@@ -13,8 +13,8 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import FormikValidationTextField from "./forms/FormikValidationTextField";
-import { createList } from "../actions/lists";
+import FormikValidationTextField from "../forms/FormikValidationTextField";
+import { createList } from "../../actions/lists";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

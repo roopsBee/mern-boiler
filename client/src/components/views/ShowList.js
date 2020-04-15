@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Container, Paper, Grid, makeStyles, List } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getList } from "../actions/lists";
+import { getList } from "../../actions/lists";
 import AddItem from "./AddItem";
-import ListItems from "./ListItems";
-import ListName from "./ListName";
+import ListItems from "../lists/ListItems";
+import ListName from "../lists/ListName";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

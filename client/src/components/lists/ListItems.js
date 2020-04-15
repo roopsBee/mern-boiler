@@ -8,8 +8,8 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSelector, useDispatch } from "react-redux";
-import { updateItem, deleteItem } from "../actions/item";
-import { setAlert } from "../actions/alerts";
+import { updateItem, deleteItem } from "../../actions/item";
+import { setAlert } from "../../actions/alerts";
 
 function ListItems({ listId }) {
   const list = useSelector((state) => state.currentList);
