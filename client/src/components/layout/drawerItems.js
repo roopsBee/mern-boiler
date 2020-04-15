@@ -1,19 +1,11 @@
 import React, { useEffect } from "react";
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@material-ui/core";
+import { Divider, List } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import LinkIcon from "@material-ui/icons/Link";
-import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getLists } from "../../actions/lists";
 import ShowHide from "../auth/ShowHide";
-import AddList from "./AddList";
 import DrawerItem from "./DrawerItem";
 
 const DrawerItems = (handleListItemClick, classes) => {
@@ -31,19 +23,13 @@ const DrawerItems = (handleListItemClick, classes) => {
   const myLists = lists.map((list) => {
     const { _id, name } = list;
     return (
-      <ListItem
-        component={NavLink}
-        to={`/list/${_id}`}
-        button
+      <DrawerItem
         key={_id}
-        selected={location.pathname === `/list/${_id}` ? true : false}
+        name={name}
+        icon={<LinkIcon />}
+        to={`/list/${_id}`}
         onClick={handleListItemClick}
-      >
-        <ListItemIcon>
-          <LinkIcon />
-        </ListItemIcon>
-        <ListItemText primary={name} />
-      </ListItem>
+      />
     );
   });
 
@@ -59,7 +45,12 @@ const DrawerItems = (handleListItemClick, classes) => {
           onClick={handleListItemClick}
         />
         <ShowHide showIfLoggedOut={false} isLoggedIn={isLoggedIn}>
-          <AddList handleListItemClick={handleListItemClick} />
+          <DrawerItem
+            name="New List"
+            to="/list/create"
+            icon={<HomeIcon />}
+            onClick={handleListItemClick}
+          />
           {myLists}
         </ShowHide>
       </List>
