@@ -14,7 +14,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import drawerItems from "./drawerItems";
+import DrawerItems from "./DrawerItems";
 import { NavLink } from "react-router-dom";
 import store from "../../store";
 import { logOut } from "../../actions/auth";
@@ -82,8 +82,6 @@ function ResponsiveDrawer(props) {
     }
   };
 
-  const drawer = drawerItems(handleListItemClick, classes);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -116,6 +114,7 @@ function ResponsiveDrawer(props) {
               onClick={() => {
                 store.dispatch(logOut());
               }}
+              value="value"
             >
               Logout
             </Button>
@@ -140,7 +139,10 @@ function ResponsiveDrawer(props) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {drawer}
+            <DrawerItems
+              handleListItemClick={handleListItemClick}
+              classes={classes}
+            />
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown>
@@ -151,7 +153,12 @@ function ResponsiveDrawer(props) {
             variant="permanent"
             open
           >
-            <div className={classes.toolbar}>{drawer}</div>
+            <div className={classes.toolbar}>
+              <DrawerItems
+                handleListItemClick={handleListItemClick}
+                classes={classes}
+              />
+            </div>
           </Drawer>
         </Hidden>
       </nav>

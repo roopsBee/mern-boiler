@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
-function DrawerItem({ name, to, handleClick, icon, ...props }) {
+function DrawerItem({ name, to, handleClick, Icon, ...props }) {
   const location = useLocation();
   return (
     <ListItem
@@ -15,7 +15,11 @@ function DrawerItem({ name, to, handleClick, icon, ...props }) {
       onClick={handleClick}
       {...props}
     >
-      <ListItemIcon>{icon ? icon : null}</ListItemIcon>
+      {Icon ? (
+        <ListItemIcon>
+          <Icon />
+        </ListItemIcon>
+      ) : null}
       <ListItemText primary={name} />
     </ListItem>
   );

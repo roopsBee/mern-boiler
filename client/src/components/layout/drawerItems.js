@@ -7,7 +7,7 @@ import { getLists } from "../../actions/lists";
 import ShowHide from "../auth/ShowHide";
 import DrawerItem from "./DrawerItem";
 
-const DrawerItems = (handleListItemClick, classes) => {
+const DrawerItems = ({ handleListItemClick, classes }) => {
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.lists);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -24,7 +24,7 @@ const DrawerItems = (handleListItemClick, classes) => {
       <DrawerItem
         key={_id}
         name={name}
-        icon={<LinkIcon />}
+        Icon={LinkIcon}
         to={`/list/${_id}`}
         onClick={handleListItemClick}
       />
@@ -39,14 +39,14 @@ const DrawerItems = (handleListItemClick, classes) => {
         <DrawerItem
           name="Home"
           to="/"
-          icon={<HomeIcon />}
+          Icon={HomeIcon}
           onClick={handleListItemClick}
         />
         <ShowHide showIfLoggedOut={false} isLoggedIn={isLoggedIn}>
           <DrawerItem
             name="New List"
             to="/list/create"
-            icon={<HomeIcon />}
+            Icon={HomeIcon}
             onClick={handleListItemClick}
           />
           {myLists}
