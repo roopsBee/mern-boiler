@@ -100,7 +100,7 @@ function ResponsiveDrawer(props) {
             {APP_NAME}
           </Typography>
 
-          <ShowHide isLoggedIn={isLoggedIn} showIfLoggedIn={false}>
+          <ShowHide isShowValue={!isLoggedIn}>
             <Button component={NavLink} to="/auth/register" color="inherit">
               Register
             </Button>
@@ -108,7 +108,7 @@ function ResponsiveDrawer(props) {
               Login
             </Button>
           </ShowHide>
-          <ShowHide isLoggedIn={isLoggedIn} showIfLoggedOut={false}>
+          <ShowHide isShowValue={isLoggedIn}>
             <Button
               color="inherit"
               onClick={() => {

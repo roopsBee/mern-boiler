@@ -9,3 +9,4 @@ export const GET_LISTS = "GET_LISTS";
 export const CREATE_LIST = "CREATE_LIST";
 export const GET_LIST = "GET_LIST";
 export const ADD_ITEM = "ADD_ITEM";
+export const SET_LOADING = "SET_LOADING";

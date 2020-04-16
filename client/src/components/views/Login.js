@@ -11,7 +11,6 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
 
 import FormikValidationTextField from "../forms/FormikValidationTextField";
 import { logIn } from "../../actions/auth";
@@ -56,11 +55,6 @@ export default function Login() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  let history = useHistory();
-  let location = useLocation();
-
-  let { from } = location.state || { from: { pathname: "/" } };
-
   return (
     <div className="Login">
       <Container maxWidth="xs">
@@ -76,9 +70,8 @@ export default function Login() {
             onSubmit={({ email, password }, { setSubmitting }) => {
               const user = { email, password };
               dispatch(
-                logIn(user, (isLoggedIn) => {
+                logIn(user, () => {
                   setSubmitting(false);
-                  if (isLoggedIn) history.replace(from);
                 })
               );
             }}

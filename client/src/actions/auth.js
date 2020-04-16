@@ -21,7 +21,9 @@ export const logIn = (userFormData, onComplete) => (dispatch) => {
       }
     })
     .then(() => {
-      onComplete(isLoggedin);
+      if (!isLoggedin) {
+        onComplete();
+      }
     });
 };
 

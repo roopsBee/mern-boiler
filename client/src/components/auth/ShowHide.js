@@ -1,19 +1,16 @@
-const ShowHide = ({
-  isLoggedIn = false, // point to isLoggedin state
-  showIfLoggedIn = true,
-  showIfLoggedOut = true,
-  getAuthlevel = "all",
-  authLevel = "all",
-  children,
-}) => {
-  if (getAuthlevel === authLevel) {
-    if (isLoggedIn && showIfLoggedIn) {
-      return children;
-    } else if (!isLoggedIn && showIfLoggedOut) {
-      return children;
-    }
-  }
-  return null;
+import React from "react";
+
+const ShowHide = ({ isShowValue = false, children, Replace, ...props }) => {
+  // if (isShowValue) {
+  //   return children;
+  // }
+  return isShowValue ? children : Replace ? <Replace {...props} /> : null;
+
+  // if (Replace) {
+  //   return <Replace {...props} />;
+  // } else {
+  //   return null;
+  // }
 };
 
 export default ShowHide;

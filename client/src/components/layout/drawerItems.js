@@ -42,7 +42,7 @@ const DrawerItems = ({ handleListItemClick, classes }) => {
           Icon={HomeIcon}
           onClick={handleListItemClick}
         />
-        <ShowHide showIfLoggedOut={false} isLoggedIn={isLoggedIn}>
+        <ShowHide isShowValue={isLoggedIn}>
           <DrawerItem
             name="New List"
             to="/list/create"
