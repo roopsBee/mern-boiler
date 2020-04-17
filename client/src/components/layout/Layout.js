@@ -20,6 +20,7 @@ import store from "../../store";
 import { logOut } from "../../actions/auth";
 import ShowHide from "../auth/ShowHide";
 import { APP_NAME } from "../../config";
+import Loading from "./Loading";
 
 const drawerWidth = 200;
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -69,6 +70,7 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  let isAuthenticating = useSelector((state) => state.auth.isAuthenticating);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -165,7 +167,9 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {props.children}
+        <ShowHide isShowValue={!isAuthenticating} Replace={Loading}>
+          {props.children}
+        </ShowHide>
       </main>
     </div>
   );

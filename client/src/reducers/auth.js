@@ -1,11 +1,19 @@
-import { LOGOUT, LOGIN, AUTHENTICATE, DEAUTHENTICATE } from "../actions/types";
+import {
+  LOGOUT,
+  LOGIN,
+  AUTHENTICATE,
+  DEAUTHENTICATE,
+  SET_AUTHENTICATING_FALSE,
+  SET_AUTHENTICATING_TRUE,
+} from "../actions/types";
 
 const initialState = {
   isLoggedIn: false,
   user: {
     name: "",
-    email: ""
-  }
+    email: "",
+  },
+  isAuthenticating: false,
 };
 
 const auth = (state = initialState, { type, payload }) => {
@@ -17,6 +25,10 @@ const auth = (state = initialState, { type, payload }) => {
     case LOGOUT:
     case DEAUTHENTICATE:
       return { ...state, isLoggedIn: false, user: null };
+    case SET_AUTHENTICATING_TRUE:
+      return { ...state, isAuthenticating: true };
+    case SET_AUTHENTICATING_FALSE:
+      return { ...state, isAuthenticating: false };
     default:
       return state;
   }

@@ -1,4 +1,11 @@
-import { LOGIN, LOGOUT, AUTHENTICATE, DEAUTHENTICATE } from "./types";
+import {
+  LOGIN,
+  LOGOUT,
+  AUTHENTICATE,
+  DEAUTHENTICATE,
+  SET_AUTHENTICATING_FALSE,
+  SET_AUTHENTICATING_TRUE,
+} from "./types";
 import api from "../api/api";
 import { setAlert } from "./alerts";
 import { handleError } from "./actionHelpers";
@@ -41,6 +48,7 @@ export const logOut = () => (dispatch) => {
 };
 
 export const isAuthenticated = (onComplete) => (dispatch) => {
+  dispatch({ type: SET_AUTHENTICATING_TRUE });
   api
     .get("/auth/isauth")
     .then((res) => {
@@ -54,5 +62,8 @@ export const isAuthenticated = (onComplete) => (dispatch) => {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      dispatch({ type: SET_AUTHENTICATING_FALSE });
     });
 };
