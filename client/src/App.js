@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { Provider } from "react-redux";
 import { useEffect } from "react";
 import { Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import Home from "./components/views/Home";
@@ -19,36 +19,28 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import ShowList from "./components/views/ShowList";
 
 const App = () => {
+  const path = window.location.pathname;
+  let history = useHistory();
+
   useEffect(() => {
-    store.dispatch(isAuthenticated());
+    store.dispatch(isAuthenticated(() => history.push(path)));
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className="App">
-      <Provider store={store}>
-        <Router>
-          <ThemeProvider theme={theme}>
-            <Layout appName="My App">
-              <Alerts />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <LoggedOutRoute exact path="/auth/login" component={Login} />
-                <LoggedOutRoute
-                  exact
-                  path="/auth/register"
-                  component={Register}
-                />
-                <PrivateRoute
-                  exact
-                  path="/list/create"
-                  component={CreateList}
-                />
-                <PrivateRoute exact path="/list/:id" component={ShowList} />
-              </Switch>
-            </Layout>
-          </ThemeProvider>
-        </Router>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Layout appName="My App">
+          <Alerts />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <LoggedOutRoute exact path="/auth/login" component={Login} />
+            <LoggedOutRoute exact path="/auth/register" component={Register} />
+            <PrivateRoute exact path="/list/create" component={CreateList} />
+            <PrivateRoute exact path="/list/:id" component={ShowList} />
+          </Switch>
+        </Layout>
+      </ThemeProvider>
     </div>
   );
 };

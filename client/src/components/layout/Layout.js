@@ -67,6 +67,7 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const breakpointMatches = useMediaQuery(theme.breakpoints.down("xs"));
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
   let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const handleDrawerToggle = () => {

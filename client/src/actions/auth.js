@@ -40,13 +40,14 @@ export const logOut = () => (dispatch) => {
     });
 };
 
-export const isAuthenticated = () => (dispatch) => {
+export const isAuthenticated = (onComplete) => (dispatch) => {
   api
     .get("/auth/isauth")
     .then((res) => {
       if (res.data.isAuthenticated) {
         const { user } = res.data;
         dispatch({ type: AUTHENTICATE, payload: user });
+        onComplete();
       } else {
         dispatch({ type: DEAUTHENTICATE });
       }
