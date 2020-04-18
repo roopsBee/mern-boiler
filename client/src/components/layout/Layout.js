@@ -76,12 +76,9 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleListItemClick = (event, onClick) => {
+  const handleListItemClick = (event) => {
     if (breakpointMatches) {
       handleDrawerToggle();
-    }
-    if (onClick) {
-      onClick();
     }
   };
 

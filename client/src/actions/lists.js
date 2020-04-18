@@ -1,6 +1,11 @@
 import api from "../api/api";
 import { setAlert } from "./alerts";
-import { GET_LISTS, GET_LIST } from "./types";
+import {
+  GET_LISTS,
+  GET_LIST,
+  SET_LOADING_LIST_FALSE,
+  SET_LOADING_LIST_TRUE,
+} from "./types";
 import { handleError } from "./actionHelpers";
 
 export const getLists = () => (dispatch) => {
@@ -35,6 +40,7 @@ export const createList = (formData, onComplete) => (dispatch) => {
 };
 
 export const getList = (_id) => (dispatch) => {
+  dispatch({ type: SET_LOADING_LIST_TRUE });
   api
     .get(`/list/${_id}`)
     .then(({ data }) => {
@@ -43,6 +49,9 @@ export const getList = (_id) => (dispatch) => {
     })
     .catch((error) => {
       handleError(error);
+    })
+    .finally(() => {
+      dispatch({ type: SET_LOADING_LIST_FALSE });
     });
 };
 

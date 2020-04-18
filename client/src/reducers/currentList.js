@@ -1,4 +1,8 @@
-import { GET_LIST } from "../actions/types";
+import {
+  GET_LIST,
+  SET_LOADING_LIST_FALSE,
+  SET_LOADING_LIST_TRUE,
+} from "../actions/types";
 
 const initialState = {
   name: null,
@@ -10,12 +14,17 @@ const initialState = {
       done: false,
     },
   ],
+  isLoadingList: false,
 };
 
 const currentList = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_LIST:
-      return { ...payload };
+      return { ...state, ...payload };
+    case SET_LOADING_LIST_TRUE:
+      return { ...state, isLoadingList: true };
+    case SET_LOADING_LIST_FALSE:
+      return { ...state, isLoadingList: false };
     default:
       return state;
   }
