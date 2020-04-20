@@ -79,12 +79,13 @@ export default function CreateList() {
                 fullWidth
                 id="name"
                 label="Name"
+                color="secondary"
                 name="name"
               />
               <Button
                 className={classes.submit}
                 disabled={isSubmitting}
-                color="primary"
+                color="secondary"
                 variant="contained"
                 type="submit"
                 fullWidth

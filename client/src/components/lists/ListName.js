@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, TextField, makeStyles } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment } from "react";
 import { useState } from "react";
@@ -7,7 +7,15 @@ import { updateListName } from "../../actions/lists";
 import { setAlert } from "../../actions/alerts";
 import DeleteListButton from "./DeleteListButton";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(0, 4, 0, 0),
+  },
+}));
+
 const ListName = ({ listId }) => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const list = useSelector((state) => state.currentList);
   let [listName, setListName] = useState("");
@@ -39,6 +47,9 @@ const ListName = ({ listId }) => {
       </Grid>
       <Grid item xs={9}>
         <TextField
+          className={classes.root}
+          inputProps={{ style: { textAlign: "center" } }}
+          color="secondary"
           margin="none"
           fullWidth
           value={listName || ""}

@@ -63,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const breakpointMatches = useMediaQuery(theme.breakpoints.down("xs"));
@@ -85,7 +84,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar elevation={10} position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -126,7 +125,6 @@ function ResponsiveDrawer(props) {
           <SwipeableDrawer
             disableBackdropTransition={!iOS}
             disableDiscovery={iOS}
-            container={container}
             variant="temporary"
             anchor="left"
             open={mobileOpen}
@@ -152,6 +150,7 @@ function ResponsiveDrawer(props) {
             }}
             variant="permanent"
             open
+            elevation={10}
           >
             <div className={classes.toolbar}>
               <DrawerItems

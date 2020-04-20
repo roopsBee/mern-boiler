@@ -3,7 +3,7 @@ import { Container, Paper, Grid, makeStyles, List } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getList } from "../../actions/lists";
-import AddItem from "./AddItem";
+import AddItem from "../lists/AddItem";
 import ListItems from "../lists/ListItems";
 import ListName from "../lists/ListName";
 import ShowHide from "../auth/ShowHide";
@@ -32,7 +32,7 @@ const ShowList = (props) => {
   return (
     <Container maxWidth="xs">
       <ShowHide isShowValue={!isLoadingList} Replace={Loading}>
-        <Paper elevation={5} className={classes.paper}>
+        <Paper elevation={10} className={classes.paper}>
           <Grid container justify="center" alignItems="center">
             <ListName listId={listId} />
             <List>

@@ -66,6 +66,7 @@ function ListItems({ listId }) {
         <Grid item xs={8}>
           <TextField
             margin="none"
+            color="secondary"
             fullWidth
             multiline
             value={textField[_id] || ""}

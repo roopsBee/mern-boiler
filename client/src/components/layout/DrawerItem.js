@@ -5,19 +5,20 @@ import { NavLink } from "react-router-dom";
 
 function DrawerItem({ name, to, handleClick, Icon, ...props }) {
   const location = useLocation();
+  let isPath = location.pathname === to ? true : false;
   return (
     <ListItem
       component={NavLink}
       to={to}
       button
       key={name}
-      selected={location.pathname === to ? true : false}
+      selected={isPath}
       onClick={handleClick}
       {...props}
     >
       {Icon ? (
         <ListItemIcon>
-          <Icon />
+          <Icon color={isPath ? "secondary" : "primary"} />
         </ListItemIcon>
       ) : null}
       <ListItemText primary={name} />

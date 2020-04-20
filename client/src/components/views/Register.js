@@ -5,7 +5,7 @@ import {
   Paper,
   Container,
   Typography,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,26 +15,26 @@ import { useDispatch } from "react-redux";
 import FormikValidationTextField from "../forms/FormikValidationTextField";
 import { registerUser } from "../../actions/users";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     margin: theme.spacing(1, 0, 1),
     padding: theme.spacing(0, 2),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     marginTop: theme.spacing(3),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    textAlign: "center"
+    textAlign: "center",
   },
   submit: {
-    margin: theme.spacing(3, 0, 3, 0)
-  }
+    margin: theme.spacing(3, 0, 3, 0),
+  },
 }));
 
 const validationSchema = yup.object().shape({
@@ -58,7 +58,7 @@ const validationSchema = yup.object().shape({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Confirm password")
+    .required("Confirm password"),
 });
 
 export default function Register() {
@@ -68,7 +68,7 @@ export default function Register() {
   return (
     <div className="Register">
       <Container maxWidth="xs">
-        <Paper elevation={5} className={classes.paper}>
+        <Paper elevation={10} className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOpenIcon />
           </Avatar>
@@ -77,7 +77,7 @@ export default function Register() {
               name: "",
               email: "",
               password: "",
-              confirmPassword: ""
+              confirmPassword: "",
             }}
             onSubmit={({ name, email, password }, { setSubmitting }) => {
               const newUser = { name, email, password };
@@ -96,6 +96,7 @@ export default function Register() {
                   Register
                 </Typography>
                 <FormikValidationTextField
+                  color="secondary"
                   margin="normal"
                   fullWidth
                   id="name"
@@ -103,6 +104,7 @@ export default function Register() {
                   name="name"
                 />
                 <FormikValidationTextField
+                  color="secondary"
                   margin="normal"
                   fullWidth
                   id="email"
@@ -111,6 +113,7 @@ export default function Register() {
                   type="email"
                 />
                 <FormikValidationTextField
+                  color="secondary"
                   margin="normal"
                   fullWidth
                   id="password"
@@ -119,6 +122,7 @@ export default function Register() {
                   type="password"
                 />
                 <FormikValidationTextField
+                  color="secondary"
                   margin="normal"
                   fullWidth
                   id="confirmPassword"
@@ -129,7 +133,7 @@ export default function Register() {
                 <Button
                   className={classes.submit}
                   disabled={isSubmitting}
-                  color="primary"
+                  color="secondary"
                   variant="contained"
                   type="submit"
                   fullWidth

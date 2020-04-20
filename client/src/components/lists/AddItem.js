@@ -13,6 +13,7 @@ import { addItem } from "../../actions/item";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(0, 0, 0, 2),
+    padding: 0,
   },
 }));
 
@@ -46,7 +47,9 @@ const AddItem = ({ listId }) => {
             <ListItem className={classes.root}>
               <Grid item xs={10}>
                 <FormikValidationTextField
+                  isSuccessStyle={false}
                   fullWidth
+                  color="secondary"
                   multiline
                   id="text"
                   label="New Item"

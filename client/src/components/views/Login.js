@@ -58,7 +58,7 @@ export default function Login() {
   return (
     <div className="Login">
       <Container maxWidth="xs">
-        <Paper elevation={5} className={classes.paper}>
+        <Paper elevation={10} className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOpenIcon />
           </Avatar>
@@ -84,6 +84,7 @@ export default function Login() {
                 </Typography>
 
                 <FormikValidationTextField
+                  color="secondary"
                   margin="normal"
                   fullWidth
                   id="email"
@@ -92,6 +93,7 @@ export default function Login() {
                   type="email"
                 />
                 <FormikValidationTextField
+                  color="secondary"
                   margin="normal"
                   fullWidth
                   id="password"
@@ -103,7 +105,7 @@ export default function Login() {
                 <Button
                   className={classes.submit}
                   disabled={isSubmitting}
-                  color="primary"
+                  color="secondary"
                   variant="contained"
                   type="submit"
                   fullWidth

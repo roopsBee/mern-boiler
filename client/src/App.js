@@ -9,7 +9,7 @@ import Layout from "./components/layout/Layout";
 import Home from "./components/views/Home";
 import Login from "./components/views/Login";
 import Register from "./components/views/Register";
-import theme from "./components/themes/theme";
+import theme from "./themes/theme";
 import store from "./store";
 import Alerts from "./components/layout/Alerts";
 import { isAuthenticated } from "./actions/auth";

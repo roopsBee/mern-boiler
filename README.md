@@ -15,7 +15,10 @@ Boiler plate for a MERN stack / todo list app
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately.
 
--add different ways to delete a list e.g. explode
 -add transition/animation to delete item
 -add transition/animation to creaete list
 -add transitions to changing lists
+-learn react-springs
+-reorder lists
+-theme colours
+-responsive theme

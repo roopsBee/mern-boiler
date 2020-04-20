@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Divider, List } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
-import LinkIcon from "@material-ui/icons/Link";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import { useSelector, useDispatch } from "react-redux";
 import { getLists } from "../../actions/lists";
 import ShowHide from "../auth/ShowHide";
@@ -24,7 +25,7 @@ const DrawerItems = ({ handleListItemClick, classes }) => {
       <DrawerItem
         key={_id}
         name={name}
-        Icon={LinkIcon}
+        Icon={ListAltIcon}
         to={`/list/${_id}`}
         onClick={handleListItemClick}
       />
@@ -35,7 +36,7 @@ const DrawerItems = ({ handleListItemClick, classes }) => {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <List>
+      <List disablePadding={true}>
         <DrawerItem
           name="Home"
           to="/"
@@ -46,7 +47,7 @@ const DrawerItems = ({ handleListItemClick, classes }) => {
           <DrawerItem
             name="New List"
             to="/list/create"
-            Icon={HomeIcon}
+            Icon={AddBoxOutlinedIcon}
             onClick={handleListItemClick}
           />
           {myLists}
