@@ -9,7 +9,7 @@ import DeleteListButton from "./DeleteListButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(0, 4, 0, 0),
+    padding: theme.spacing(0, 5, 0, 0),
   },
 }));
 
