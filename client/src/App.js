@@ -17,6 +17,7 @@ import LoggedOutRoute from "./components/auth/LoggedOutRoute";
 import CreateList from "./components/views/CreateList";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import ShowList from "./components/views/ShowList";
+import RoutesTransition from "./components/routes/RoutesTransition";
 
 const App = () => {
   const path = window.location.pathname;
@@ -28,10 +29,10 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <Layout appName="My App">
-          <Alerts />
+    <ThemeProvider theme={theme}>
+      <Layout appName="My App">
+        <Alerts />
+        <RoutesTransition>
           <Switch>
             <Route exact path="/" component={Home} />
             <LoggedOutRoute exact path="/auth/login" component={Login} />
@@ -39,9 +40,9 @@ const App = () => {
             <PrivateRoute exact path="/list/create" component={CreateList} />
             <PrivateRoute exact path="/list/:id" component={ShowList} />
           </Switch>
-        </Layout>
-      </ThemeProvider>
-    </div>
+        </RoutesTransition>
+      </Layout>
+    </ThemeProvider>
   );
 };
 
