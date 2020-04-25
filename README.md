@@ -28,9 +28,7 @@ Boiler plate for a MERN stack / todo list app
 
 -unit testing with jest
 
--add animation to delete button
 -add animation on delete list
--add clickaway on delete list button
 
 -clear/reset add item form after submit
 

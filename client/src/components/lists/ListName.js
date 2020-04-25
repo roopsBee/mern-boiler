@@ -8,7 +8,7 @@ import DeleteListButton from "./DeleteListButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(0, 5, 0, 0),
+    padding: theme.spacing(0, 3, 0, 4),
   },
 }));
 
@@ -40,13 +40,12 @@ const ListName = ({ listId }) => {
   };
 
   return (
-    <Grid container>
+    <Grid container alignItems="center" className={classes.root}>
       <Grid item>
         <DeleteListButton listId={listId} />
       </Grid>
       <Grid item xs={9}>
         <TextField
-          className={classes.root}
           inputProps={{ style: { textAlign: "center" } }}
           color="secondary"
           margin="none"

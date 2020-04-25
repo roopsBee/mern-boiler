@@ -8,6 +8,7 @@ import ListItems from "../lists/ListItems";
 import ShowHide from "../auth/ShowHide";
 import ListTransition from "../lists/ListTransitionLoader";
 import AnimatedListName from "../lists/AnimatedListName";
+import ListName from "../lists/ListName";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,7 +35,9 @@ const ShowList = (props) => {
       <ShowHide isShowValue={!isLoadingList} Replace={ListTransition}>
         <Paper elevation={10} className={classes.paper}>
           <Grid container justify="center" alignItems="center">
-            <AnimatedListName listId={listId} />
+            <Grid item xs={10}>
+              <ListName listId={listId} />
+            </Grid>
             <List>
               <ListItems listId={listId} />
               <AddItem listId={listId} />
