@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { getList } from "../../actions/lists";
 import AddItem from "../lists/AddItem";
 import ListItems from "../lists/ListItems";
-import ListName from "../lists/ListName";
 import ShowHide from "../auth/ShowHide";
-import Loading from "../layout/Loading";
+import ListTransition from "../lists/ListTransitionLoader";
+import AnimatedListName from "../lists/AnimatedListName";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,10 +31,10 @@ const ShowList = (props) => {
 
   return (
     <Container maxWidth="xs">
-      <ShowHide isShowValue={!isLoadingList} Replace={Loading}>
+      <ShowHide isShowValue={!isLoadingList} Replace={ListTransition}>
         <Paper elevation={10} className={classes.paper}>
           <Grid container justify="center" alignItems="center">
-            <ListName listId={listId} />
+            <AnimatedListName listId={listId} />
             <List>
               <ListItems listId={listId} />
               <AddItem listId={listId} />

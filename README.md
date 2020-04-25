@@ -20,14 +20,16 @@ Boiler plate for a MERN stack / todo list app
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately. Use library to stack alerts
 
--add transition/animation to delete item
--create isTransitioning state for react spring to toggle
-
--create list transition component so when slides in shows paper
+-add transition/animation to delete item add item
 
 -change colour on completed task
 -change icon colours in lists
 
--reorder lists
+-reorder draggable lists
 
 -unit testing with jest
+
+-add animation to delete button
+-add animation on delete list
+-clear/reset add item form after submit
+-on add item form make enter, add item not start new line

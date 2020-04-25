@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Grid, TextField, makeStyles } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { Fragment } from "react";
 import { useState } from "react";
 import { updateListName } from "../../actions/lists";
 import { setAlert } from "../../actions/alerts";
@@ -41,7 +40,7 @@ const ListName = ({ listId }) => {
   };
 
   return (
-    <Fragment>
+    <Grid container>
       <Grid item>
         <DeleteListButton listId={listId} />
       </Grid>
@@ -60,7 +59,7 @@ const ListName = ({ listId }) => {
           }}
         />
       </Grid>
-    </Fragment>
+    </Grid>
   );
 };
 
