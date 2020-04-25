@@ -20,9 +20,8 @@ Boiler plate for a MERN stack / todo list app
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately. Use library to stack alerts
 
--add transition/animation to delete item add item
-
 -change colour on completed task
+
 -change icon colours in lists
 
 -reorder draggable lists
@@ -31,5 +30,8 @@ Boiler plate for a MERN stack / todo list app
 
 -add animation to delete button
 -add animation on delete list
+-add clickaway on delete list button
+
 -clear/reset add item form after submit
--on add item form make enter, add item not start new line
+
+-on add item form - make enter/return key add an item not start a new line
