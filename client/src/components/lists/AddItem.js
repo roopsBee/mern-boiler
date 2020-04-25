@@ -42,7 +42,7 @@ const AddItem = ({ listId }) => {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, handleSubmit }) => (
         <Form>
           <Grid
             container
@@ -56,7 +56,6 @@ const AddItem = ({ listId }) => {
                   isSuccessStyle={false}
                   fullWidth
                   color="secondary"
-                  multiline
                   id="text"
                   label="New Item"
                   name="text"

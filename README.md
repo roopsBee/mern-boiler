@@ -30,8 +30,4 @@ Boiler plate for a MERN stack / todo list app
 
 -add animation on delete list
 
--clear/reset add item form after submit
-
--on add item form - make enter/return key add an item not start a new line
-
 -align add item field - it's narrower with an empty list, then wider with items in the list
