@@ -43,8 +43,13 @@ const AddItem = ({ listId }) => {
     >
       {({ isSubmitting }) => (
         <Form>
-          <Grid container justify="center" alignItems="center">
-            <ListItem className={classes.root}>
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            className={classes.root}
+          >
+            <ListItem>
               <Grid item xs={10}>
                 <FormikValidationTextField
                   isSuccessStyle={false}
