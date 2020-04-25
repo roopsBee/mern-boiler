@@ -7,7 +7,6 @@ import AddItem from "../lists/AddItem";
 import ListItems from "../lists/ListItems";
 import ShowHide from "../auth/ShowHide";
 import ListTransition from "../lists/ListTransitionLoader";
-import AnimatedListName from "../lists/AnimatedListName";
 import ListName from "../lists/ListName";
 
 const useStyles = makeStyles((theme) => ({

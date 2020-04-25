@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { animated, useTransition } from "react-spring";
 
 //toggle - state true/false

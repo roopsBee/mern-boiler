@@ -30,10 +30,11 @@ const AddItem = ({ listId }) => {
       initialValues={{
         text: "",
       }}
-      onSubmit={(formData, { setSubmitting }) => {
+      onSubmit={(formData, { setSubmitting, resetForm }) => {
         dispatch(
           addItem(listId, formData, () => {
             setSubmitting(false);
+            resetForm();
           })
         );
       }}
