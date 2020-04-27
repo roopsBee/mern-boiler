@@ -12,8 +12,10 @@ import { addItem } from "../../actions/item";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(0, 0, 0, 2),
-    padding: 0,
+    margin: 0,
+    paddingLeft: "30px",
+    paddingRight: "0px",
+    width: "300px",
   },
 }));
 
@@ -44,13 +46,8 @@ const AddItem = ({ listId }) => {
     >
       {({ isSubmitting, handleSubmit }) => (
         <Form>
-          <Grid
-            container
-            justify="center"
-            alignItems="center"
-            className={classes.root}
-          >
-            <ListItem>
+          <Grid container justify="center" alignItems="center">
+            <ListItem className={classes.root}>
               <Grid item xs={10}>
                 <FormikValidationTextField
                   isSuccessStyle={false}

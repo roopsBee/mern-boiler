@@ -11,7 +11,6 @@ Boiler plate for a MERN stack / todo list app
 
 -add github authentication
 -add google authentication
-
 -validation/sanitation on routes
 
 -review response status codes
@@ -20,10 +19,6 @@ Boiler plate for a MERN stack / todo list app
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately. Use library to stack alerts
 
--change colour on completed task
-
--change icon colours in lists
-
 -reorder draggable lists
 
 -unit testing with jest
@@ -31,6 +26,9 @@ Boiler plate for a MERN stack / todo list app
 -add animation on delete list
 
 -align add item field - it's narrower with an empty list, then wider with items in the list
+
 -style fields explicitly with css width:px
 
--sanitise/ validate inputs
+-sanitize / validate inputs
+
+-refactor transitions

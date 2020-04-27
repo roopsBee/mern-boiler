@@ -5,6 +5,7 @@ import {
   IconButton,
   TextField,
   Checkbox,
+  makeStyles,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +13,16 @@ import { animated, useTransition } from "react-spring";
 import { updateItem, deleteItem } from "../../actions/item";
 import { setAlert } from "../../actions/alerts";
 
+const useStyles = makeStyles({
+  root: {
+    width: "330px",
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+});
+
 function ListItems({ listId }) {
+  const classes = useStyles();
   const listItemHeight = "56px";
   const list = useSelector((state) => state.currentList);
   const dispatch = useDispatch();
@@ -67,7 +77,7 @@ function ListItems({ listId }) {
     const _id = item._id;
     return (
       <animated.div key={key} style={props}>
-        <ListItem dense key={_id || ""}>
+        <ListItem dense key={_id || ""} classes={classes}>
           <Grid item>
             <IconButton
               onClick={(event) => {
@@ -107,7 +117,7 @@ function ListItems({ listId }) {
     );
   });
 
-  return <div>{listItemsTransitions}</div>;
+  return <>{listItemsTransitions}</>;
 }
 
 export default ListItems;

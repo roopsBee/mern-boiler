@@ -1,20 +1,12 @@
 import React, { useEffect } from "react";
-import { Grid, TextField, makeStyles } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { updateListName } from "../../actions/lists";
 import { setAlert } from "../../actions/alerts";
 import DeleteListButton from "./DeleteListButton";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(0, 3, 0, 4),
-  },
-}));
-
 const ListName = ({ listId }) => {
-  const classes = useStyles();
-
   const dispatch = useDispatch();
   const list = useSelector((state) => state.currentList);
   let [listName, setListName] = useState("");
@@ -40,7 +32,7 @@ const ListName = ({ listId }) => {
   };
 
   return (
-    <Grid container alignItems="center" className={classes.root}>
+    <Grid container alignItems="center">
       <Grid item>
         <DeleteListButton listId={listId} />
       </Grid>

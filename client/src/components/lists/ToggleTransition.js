@@ -4,7 +4,7 @@ import { animated, useTransition } from "react-spring";
 //toggle - state true/false
 //transitionStyles - {from{styles},to:{styles},leave:{styles}}
 
-export default function App({ toggle, transitionStyles, children }) {
+export default function App({ toggle = false, transitionStyles, children }) {
   const transitions = useTransition(toggle, null, transitionStyles);
 
   return transitions.map(
