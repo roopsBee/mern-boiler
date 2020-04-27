@@ -49,20 +49,20 @@ function DeleteListButton({ listId }) {
 
   return (
     <Fragment>
-      <IconButton ref={buttonRef} onClick={handleIconClick}>
-        <DeleteIcon color="secondary" />
-      </IconButton>
-      <Popper open={open} anchorEl={buttonRef.current} placement="left">
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <IconButton ref={buttonRef} onClick={handleIconClick}>
+          <DeleteIcon color="secondary" />
+        </IconButton>
+      </ClickAwayListener>
+      <Popper open={open} anchorEl={buttonRef.current} placement="top">
         <ToggleTransition toggle={toggle} transitionStyles={transitionStyles}>
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleDeleteClick}
-            >
-              Delete List
-            </Button>
-          </ClickAwayListener>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleDeleteClick}
+          >
+            Delete List
+          </Button>
         </ToggleTransition>
       </Popper>
     </Fragment>
