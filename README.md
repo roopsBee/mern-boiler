@@ -23,8 +23,6 @@ Boiler plate for a MERN stack / todo list app
 
 -unit testing with jest
 
--add animation on delete list
-
 -sanitize / validate inputs
 
 -refactor transitions
