@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { red, blue, yellow } from "@material-ui/core/colors";
+import { red, blue, yellow, lightGreen } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
@@ -50,6 +50,14 @@ const theme = createMuiTheme({
         },
         "&:after": {
           borderBottom: `2px solid ${blue[600]}`,
+        },
+      },
+    },
+    MuiCheckbox: {
+      colorSecondary: {
+        color: blue[600],
+        "&$checked": {
+          color: lightGreen["A400"],
         },
       },
     },

@@ -50,7 +50,7 @@ function DeleteListButton({ listId }) {
   return (
     <Fragment>
       <IconButton ref={buttonRef} onClick={handleIconClick}>
-        <DeleteIcon />
+        <DeleteIcon color="secondary" />
       </IconButton>
       <Popper open={open} anchorEl={buttonRef.current} placement="left">
         <ToggleTransition toggle={toggle} transitionStyles={transitionStyles}>

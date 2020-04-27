@@ -31,3 +31,6 @@ Boiler plate for a MERN stack / todo list app
 -add animation on delete list
 
 -align add item field - it's narrower with an empty list, then wider with items in the list
+-style fields explicitly with css width:px
+
+-sanitise/ validate inputs

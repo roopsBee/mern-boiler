@@ -64,7 +64,7 @@ const AddItem = ({ listId }) => {
               </Grid>
               <Grid item>
                 <IconButton disabled={isSubmitting} type="submit">
-                  <AddBoxIcon />
+                  <AddBoxIcon color="secondary" />
                 </IconButton>
               </Grid>
             </ListItem>

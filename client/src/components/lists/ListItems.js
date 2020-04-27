@@ -74,7 +74,7 @@ function ListItems({ listId }) {
                 handleClickDelete(event, _id);
               }}
             >
-              <DeleteIcon />
+              <DeleteIcon color="secondary" />
             </IconButton>
           </Grid>
           <Grid item xs={8}>
@@ -82,7 +82,6 @@ function ListItems({ listId }) {
               margin="none"
               color="secondary"
               fullWidth
-              multiline
               value={textField[_id] || ""}
               onChange={(event) => {
                 handleChange(event, _id);
