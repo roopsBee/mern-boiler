@@ -26,3 +26,8 @@ Boiler plate for a MERN stack / todo list app
 -sanitize / validate inputs
 
 -refactor transitions
+
+-make list transitionLoader taller so transition isn't jarred
+
+-create animated list component, and seperate draggable list component. Show/hide depending on draghandle click. use timeouts to determine when to show/hide
+-create draggable list
