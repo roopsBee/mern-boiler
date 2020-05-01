@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   ListItem,
@@ -11,6 +11,7 @@ import {
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Draggable } from "react-beautiful-dnd";
+import { useSpring, animated } from "react-spring";
 
 const useStyles = makeStyles({
   root: {
@@ -36,59 +37,75 @@ function DraggableListItem({
 }) {
   const classes = useStyles();
   const _id = id;
+  const itemHeight = "55.95px";
+
+  const [props, set, stop] = useSpring(() => ({
+    from: { opacity: 0, height: "0px" },
+    to: { opacity: 1, height: itemHeight },
+  }));
+
+  useEffect(() => {}, []);
+
   return (
     <Draggable draggableId={_id} index={index}>
       {(provided, snapshot) => (
         <Portal disablePortal={!snapshot.isDragging}>
-          <ListItem
-            dense
-            className={classes.root}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
+          <animated.div
+            style={{
+              ...props,
+              position: snapshot.isDragging ? "absolute" : "",
+            }}
           >
-            <Grid item>
-              <IconButton
-                onClick={(event) => {
-                  handleClickDelete(event, _id);
-                }}
-              >
-                <DeleteIcon color="secondary" />
-              </IconButton>
-            </Grid>
-            <Grid item xs={8}>
-              <TextField
-                margin="none"
-                color="secondary"
-                fullWidth
-                value={textField || ""}
-                onChange={(event) => {
-                  handleChange(event, _id);
-                }}
-                onBlur={(event) => {
-                  handleBlur(event, _id);
-                }}
-                onFocus={(event) => {
-                  handleFocus(event);
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <Checkbox
-                checked={done || false}
-                onClick={(event) => {
-                  handleClickCheckBox(event, _id);
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.dragHandle}
-                {...provided.dragHandleProps}
-              >
-                <DragIndicatorIcon color="secondary" />
-              </IconButton>
-            </Grid>
-          </ListItem>
+            <ListItem
+              dense
+              className={classes.root}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+            >
+              <Grid item>
+                <IconButton
+                  onClick={(event) => {
+                    handleClickDelete(event, _id);
+                  }}
+                >
+                  <DeleteIcon color="secondary" />
+                </IconButton>
+              </Grid>
+              <Grid item xs={8}>
+                <TextField
+                  margin="none"
+                  color="secondary"
+                  fullWidth
+                  value={textField || ""}
+                  onChange={(event) => {
+                    handleChange(event, _id);
+                  }}
+                  onBlur={(event) => {
+                    handleBlur(event, _id);
+                  }}
+                  onFocus={(event) => {
+                    handleFocus(event);
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <Checkbox
+                  checked={done || false}
+                  onClick={(event) => {
+                    handleClickCheckBox(event, _id);
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <IconButton
+                  className={classes.dragHandle}
+                  {...provided.dragHandleProps}
+                >
+                  <DragIndicatorIcon color="secondary" />
+                </IconButton>
+              </Grid>
+            </ListItem>
+          </animated.div>
         </Portal>
       )}
     </Draggable>
