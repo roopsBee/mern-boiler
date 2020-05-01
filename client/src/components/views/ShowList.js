@@ -5,13 +5,11 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getList } from "../../actions/lists";
 import AddItem from "../lists/AddItem";
-import ListItems from "../lists/AnimatedListItems";
 import ShowHide from "../auth/ShowHide";
 import ListTransition from "../lists/ListTransitionLoader";
 import ListName from "../lists/ListName";
 import ToggleTransition from "../lists/ToggleTransition";
 import DraggableListItems from "../lists/draggableList/DraggableListItems";
-import DraggableListItem from "../lists/draggableList/DraggableListItem";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

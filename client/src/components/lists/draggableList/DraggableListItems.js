@@ -4,9 +4,9 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import arrayMove from "array-move";
 import List from "./List";
 
-function DraggableListItems() {
-  const currentItems = useSelector((state) => state.currentList.items);
-  const [items, setItems] = useState(currentItems);
+function DraggableListItems({ listId }) {
+  const list = useSelector((state) => state.currentList);
+  const [items, setItems] = useState(list.items);
 
   const onDragEnd = (result) => {
     // dropped outside droppable or no movement
@@ -24,7 +24,7 @@ function DraggableListItems() {
       <Droppable droppableId={"list"}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            <List items={items} />
+            <List list={list} listId={listId} />
             {provided.placeholder}
           </div>
         )}

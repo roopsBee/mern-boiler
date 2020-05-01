@@ -23,8 +23,19 @@ const useStyles = makeStyles({
   },
 });
 
-function DraggableListItem({ item: { text, done, _id }, index }) {
+function DraggableListItem({
+  id,
+  index,
+  handleClickCheckBox,
+  handleClickDelete,
+  handleBlur,
+  handleChange,
+  handleFocus,
+  done,
+  textField,
+}) {
   const classes = useStyles();
+  const _id = id;
   return (
     <Draggable draggableId={_id} index={index}>
       {(provided, snapshot) => (
@@ -36,7 +47,11 @@ function DraggableListItem({ item: { text, done, _id }, index }) {
             {...provided.draggableProps}
           >
             <Grid item>
-              <IconButton>
+              <IconButton
+                onClick={(event) => {
+                  handleClickDelete(event, _id);
+                }}
+              >
                 <DeleteIcon color="secondary" />
               </IconButton>
             </Grid>
@@ -45,11 +60,25 @@ function DraggableListItem({ item: { text, done, _id }, index }) {
                 margin="none"
                 color="secondary"
                 fullWidth
-                value={text || ""}
+                value={textField || ""}
+                onChange={(event) => {
+                  handleChange(event, _id);
+                }}
+                onBlur={(event) => {
+                  handleBlur(event, _id);
+                }}
+                onFocus={(event) => {
+                  handleFocus(event);
+                }}
               />
             </Grid>
             <Grid item>
-              <Checkbox checked={done} />
+              <Checkbox
+                checked={done || false}
+                onClick={(event) => {
+                  handleClickCheckBox(event, _id);
+                }}
+              />
             </Grid>
             <Grid item>
               <IconButton
