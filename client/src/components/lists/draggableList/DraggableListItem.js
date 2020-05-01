@@ -8,14 +8,18 @@ import {
   makeStyles,
   Portal,
 } from "@material-ui/core";
+import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Draggable } from "react-beautiful-dnd";
 
 const useStyles = makeStyles({
   root: {
-    width: "330px",
-    paddingLeft: 0,
+    width: "360px",
+    paddingLeft: "15px",
     paddingRight: 0,
+  },
+  dragHandle: {
+    padding: "6px",
   },
 });
 
@@ -27,10 +31,9 @@ function DraggableListItem({ item: { text, done, _id }, index }) {
         <Portal disablePortal={!snapshot.isDragging}>
           <ListItem
             dense
-            classes={classes}
+            className={classes.root}
             ref={provided.innerRef}
             {...provided.draggableProps}
-            {...provided.dragHandleProps}
           >
             <Grid item>
               <IconButton>
@@ -47,6 +50,14 @@ function DraggableListItem({ item: { text, done, _id }, index }) {
             </Grid>
             <Grid item>
               <Checkbox checked={done} />
+            </Grid>
+            <Grid item>
+              <IconButton
+                className={classes.dragHandle}
+                {...provided.dragHandleProps}
+              >
+                <DragIndicatorIcon color="secondary" />
+              </IconButton>
             </Grid>
           </ListItem>
         </Portal>

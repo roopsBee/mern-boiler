@@ -7,6 +7,7 @@ import {
   Checkbox,
   makeStyles,
 } from "@material-ui/core";
+import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useSelector, useDispatch } from "react-redux";
 import { animated, useTransition } from "react-spring";
@@ -15,9 +16,12 @@ import { setAlert } from "../../actions/alerts";
 
 const useStyles = makeStyles({
   root: {
-    width: "330px",
-    paddingLeft: 0,
+    width: "360px",
+    paddingLeft: "15px",
     paddingRight: 0,
+  },
+  dragHandle: {
+    padding: "6px",
   },
 });
 
@@ -111,6 +115,11 @@ function ListItems({ listId }) {
                 handleClickCheckBox(event, _id);
               }}
             />
+          </Grid>
+          <Grid item>
+            <IconButton className={classes.dragHandle}>
+              <DragIndicatorIcon color="secondary" />
+            </IconButton>
           </Grid>
         </ListItem>
       </animated.div>
