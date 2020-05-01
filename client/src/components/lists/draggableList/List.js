@@ -6,14 +6,20 @@ import { updateItem, deleteItem } from "../../../actions/item";
 
 const List = ({ list, listId }) => {
   const dispatch = useDispatch();
-  let [textField, setTextField] = useState({});
-  let [done, setDone] = useState({});
+  const [textField, setTextField] = useState({});
+  const [done, setDone] = useState({});
+  const [deleteTransition, setDeleteTransition] = useState({});
+
   const [focusValue, setFocusValue] = useState("");
 
   useEffect(() => {
     list.items.forEach(({ text, _id, done }) => {
       setTextField((state) => ({ ...state, [_id]: text }));
       setDone((state) => ({ ...state, [_id]: done }));
+      setDeleteTransition((state) => ({
+        ...state,
+        [_id]: { deleted: false, list: null },
+      }));
     });
   }, [list]);
 
@@ -34,7 +40,14 @@ const List = ({ list, listId }) => {
   };
 
   const handleClickDelete = (event, id) => {
-    dispatch(deleteItem(listId, id));
+    dispatch(
+      deleteItem(listId, id, (list) => {
+        setDeleteTransition((state) => ({
+          ...state,
+          [id]: { deleted: true, list: list },
+        }));
+      })
+    );
   };
 
   const handleClickCheckBox = (event, _id) => {
@@ -61,6 +74,7 @@ const List = ({ list, listId }) => {
         handleBlur={handleBlur}
         handleChange={handleChange}
         handleFocus={handleFocus}
+        deleteTransition={deleteTransition}
       />
     );
   });

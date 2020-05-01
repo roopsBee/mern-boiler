@@ -28,6 +28,3 @@ Boiler plate for a MERN stack / todo list app
 -refactor transitions
 
 -make list transitionLoader taller so transition isn't jarred
-
-- Show/hide depending on draghandle click. use timeouts to determine when to show/hide
-  use spring for animations

@@ -28,12 +28,12 @@ export const updateItem = (listId, item) => (dispatch) => {
     });
 };
 
-export const deleteItem = (listId, itemId) => (dispatch) => {
+export const deleteItem = (listId, itemId, onDeleteList) => (dispatch) => {
   api
     .delete(`/list/${listId}/item/${itemId}`)
     .then(({ data }) => {
       const { list } = data;
-      dispatch({ type: GET_LIST, payload: list });
+      onDeleteList(list);
     })
     .catch((error) => {
       console.log(error);

@@ -12,6 +12,8 @@ import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Draggable } from "react-beautiful-dnd";
 import { useSpring, animated } from "react-spring";
+import { useDispatch } from "react-redux";
+import { GET_LIST } from "../../../actions/types";
 
 const useStyles = makeStyles({
   root: {
@@ -34,17 +36,28 @@ function DraggableListItem({
   handleFocus,
   done,
   textField,
+  deleteTransition,
 }) {
   const classes = useStyles();
   const _id = id;
-  const itemHeight = "55.95px";
+  const dispatch = useDispatch();
 
-  const [props, set, stop] = useSpring(() => ({
-    from: { opacity: 0, height: "0px" },
-    to: { opacity: 1, height: itemHeight },
+  const [props, set] = useSpring(() => ({
+    from: { opacity: 0, height: "0px", transform: "translate3d(0,0px,0)" },
+    to: { opacity: 1, height: "56px" },
   }));
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (deleteTransition[_id] && deleteTransition[_id].deleted) {
+      set({
+        to: { opacity: 0, height: "0px", transform: "translate3d(0,-20px,0)" },
+        config: { tension: 230 },
+        onRest: () => {
+          dispatch({ type: GET_LIST, payload: deleteTransition[_id].list });
+        },
+      });
+    } // eslint-disable-next-line
+  }, [deleteTransition]);
 
   return (
     <Draggable draggableId={_id} index={index}>
