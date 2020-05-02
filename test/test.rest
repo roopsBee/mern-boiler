@@ -84,7 +84,7 @@ content-type: application/json
 }
 
 ### get single list
-GET    http://localhost:5000/list/5e8e2a23cdb7fc4b3c72cf94 HTTP/1.1
+GET    http://localhost:5000/list/5eac91d0f5a66845c89ab1cc HTTP/1.1
 content-type: application/json
 
 ### update name of list
@@ -96,11 +96,11 @@ content-type: application/json
 }
 
 ### create list item
-POST http://localhost:5000/list/5e8e2a23cdb7fc4b3c72cf94/item HTTP/1.1
+POST http://localhost:5000/list/5eac91d0f5a66845c89ab1cc/item HTTP/1.1
 content-type: application/json
 
 {
-        "text":"hey micket"
+        "text":"hey errol"
 }
 
 ### edit list item by passing _id
@@ -127,4 +127,12 @@ content-type: application/json
 
 {
         "_id":"5e8e2a39cdb7fc4b3c72cf96"
+}
+### reorder item 
+PATCH   http://localhost:5000/list/5eac91d0f5a66845c89ab1cc/reorder HTTP/1.1
+content-type: application/json
+
+{
+        "from":0,
+        "to":3
 }

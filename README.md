@@ -26,5 +26,3 @@ Boiler plate for a MERN stack / todo list app
 -refactor transitions into seperate file
 
 -roeorder list create api endpoint and reducer/actions
-
--organise files

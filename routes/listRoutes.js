@@ -100,6 +100,40 @@ router.patch(
   }
 );
 
+// @route   PATCH /list/:id/reorder
+// @desc    reorder list
+// @access  Private
+router.patch(
+  "/:id/reorder",
+  checkAuthenticated,
+  isListExistsAndOwner,
+  [
+    check("from", "From is required").not().isEmpty(),
+    check("to", "To is required").not().isEmpty(),
+  ],
+  checkValidationErrors,
+  async (req, res) => {
+    try {
+      console.log("in try");
+
+      let list = req.list;
+      const { from, to } = req.body;
+      console.log(from, to, list);
+
+      const removedItem = list.items.splice(from, 1);
+      console.log("after remove", list, removedItem);
+
+      list.items.splice(to, 0, ...removedItem);
+      list.save();
+
+      res.status(200).json({ list });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json(serverError);
+    }
+  }
+);
+
 // @route   DELETE /list/:id
 // @desc    delete a list
 // @access  Private
