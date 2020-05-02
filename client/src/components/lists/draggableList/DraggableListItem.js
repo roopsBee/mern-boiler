@@ -4,27 +4,28 @@ import {
   ListItem,
   IconButton,
   TextField,
-  Checkbox,
   makeStyles,
   Portal,
+  Checkbox,
 } from "@material-ui/core";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Draggable } from "react-beautiful-dnd";
 import { useSpring, animated } from "react-spring";
 import { useDispatch } from "react-redux";
+import { useTheme } from "@material-ui/core";
 import { GET_LIST } from "../../../actions/types";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "360px",
     paddingLeft: "15px",
     paddingRight: 0,
   },
-  dragHandle: {
+  icon: {
     padding: "6px",
   },
-});
+}));
 
 function DraggableListItem({
   id,
@@ -38,11 +39,24 @@ function DraggableListItem({
   textField,
   deleteTransition,
 }) {
+  const theme = useTheme();
   const classes = useStyles();
-  const _id = id;
   const dispatch = useDispatch();
 
-  const [props, set] = useSpring(() => ({
+  const _id = id;
+  const complete = theme.palette.success.main;
+  const uncomplete = theme.palette.secondary.main;
+
+  const AnimatedDeleteIcon = animated(DeleteIcon);
+  const AnimatedDragIcon = animated(DragIndicatorIcon);
+  const AnimatedCheckBox = animated(Checkbox);
+
+  const SVGIconColor = useSpring({
+    color: done ? complete : uncomplete,
+    config: { tension: 300 },
+  });
+
+  const [transitionStyles, set] = useSpring(() => ({
     from: { opacity: 0, height: "0px" },
     to: { opacity: 1, height: "56px" },
   }));
@@ -69,7 +83,7 @@ function DraggableListItem({
         <Portal disablePortal={!snapshot.isDragging}>
           <animated.div
             style={{
-              ...props,
+              ...transitionStyles,
               position: snapshot.isDragging ? "absolute" : "",
             }}
           >
@@ -85,7 +99,7 @@ function DraggableListItem({
                     handleClickDelete(event, _id);
                   }}
                 >
-                  <DeleteIcon color="secondary" />
+                  <AnimatedDeleteIcon color="secondary" style={SVGIconColor} />
                 </IconButton>
               </Grid>
               <Grid item xs={8}>
@@ -107,7 +121,8 @@ function DraggableListItem({
                 />
               </Grid>
               <Grid item>
-                <Checkbox
+                <AnimatedCheckBox
+                  style={SVGIconColor}
                   checked={done || false}
                   onClick={(event) => {
                     handleClickCheckBox(event, _id);
@@ -116,10 +131,10 @@ function DraggableListItem({
               </Grid>
               <Grid item>
                 <IconButton
-                  className={classes.dragHandle}
+                  className={classes.icon}
                   {...provided.dragHandleProps}
                 >
-                  <DragIndicatorIcon color="secondary" />
+                  <AnimatedDragIcon color="secondary" style={SVGIconColor} />
                 </IconButton>
               </Grid>
             </ListItem>
