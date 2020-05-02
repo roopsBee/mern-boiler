@@ -7,7 +7,7 @@ import { getList } from "../../actions/lists";
 import AddItem from "../lists/AddItem";
 import ShowHide from "../auth/ShowHide";
 import ListTransition from "../lists/ListTransitionLoader";
-import ListName from "../lists/ListName";
+import ListName from "../lists/title/ListName";
 import ToggleTransition from "../lists/ToggleTransition";
 import DraggableListItems from "../lists/draggableList/DraggableListItems";
 

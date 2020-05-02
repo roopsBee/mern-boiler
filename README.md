@@ -19,10 +19,12 @@ Boiler plate for a MERN stack / todo list app
 
 -modify alerts to show more or remove stack of alerts and show latest one immediately. Use library to stack alerts
 
--reorder draggable lists
-
 -unit testing with jest
 
 -sanitize / validate inputs
 
 -refactor transitions into seperate file
+
+-roeorder list create api endpoint and reducer/actions
+
+-organise files

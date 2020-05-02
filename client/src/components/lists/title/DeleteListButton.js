@@ -3,8 +3,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Popper, Button, IconButton } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { ClickAwayListener } from "@material-ui/core";
-import { deleteList } from "../../actions/lists";
-import ToggleTransition from "./ToggleTransition";
+import { deleteList } from "../../../actions/lists";
+import ToggleTransition from "../ToggleTransition";
 
 function DeleteListButton({ listId, handleDeleteList }) {
   const [toggle, setToggle] = useState(false);

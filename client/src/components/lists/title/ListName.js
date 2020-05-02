@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Grid, TextField } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { updateListName } from "../../actions/lists";
-import { setAlert } from "../../actions/alerts";
+import { updateListName } from "../../../actions/lists";
+import { setAlert } from "../../../actions/alerts";
 import DeleteListButton from "./DeleteListButton";
 
 const ListName = ({ listId, handleDeleteList }) => {
