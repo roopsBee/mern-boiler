@@ -25,6 +25,4 @@ Boiler plate for a MERN stack / todo list app
 
 -sanitize / validate inputs
 
--refactor transitions
-
--make list transitionLoader taller so transition isn't jarred
+-refactor transitions into seperate file
