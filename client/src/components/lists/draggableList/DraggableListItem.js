@@ -43,18 +43,22 @@ function DraggableListItem({
   const dispatch = useDispatch();
 
   const [props, set] = useSpring(() => ({
-    from: { opacity: 0, height: "0px", transform: "translate3d(0,0px,0)" },
+    from: { opacity: 0, height: "0px" },
     to: { opacity: 1, height: "56px" },
   }));
 
   useEffect(() => {
     if (deleteTransition[_id] && deleteTransition[_id].deleted) {
       set({
-        to: { opacity: 0, height: "0px", transform: "translate3d(0,-20px,0)" },
-        config: { tension: 230 },
-        onRest: () => {
-          dispatch({ type: GET_LIST, payload: deleteTransition[_id].list });
-        },
+        to: [
+          { opacity: 0, config: { tension: 400, clamp: true } },
+          {
+            height: "0px",
+            onRest: () => {
+              dispatch({ type: GET_LIST, payload: deleteTransition[_id].list });
+            },
+          },
+        ],
       });
     } // eslint-disable-next-line
   }, [deleteTransition]);
@@ -86,6 +90,7 @@ function DraggableListItem({
               </Grid>
               <Grid item xs={8}>
                 <TextField
+                  autoComplete="off"
                   margin="none"
                   color="secondary"
                   fullWidth

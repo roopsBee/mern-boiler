@@ -57,6 +57,7 @@ const AddItem = ({ listId }) => {
                   label="New Item"
                   name="text"
                   variant="standard"
+                  autoComplete="off"
                 />
               </Grid>
               <Grid item>
