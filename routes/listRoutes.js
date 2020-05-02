@@ -114,15 +114,10 @@ router.patch(
   checkValidationErrors,
   async (req, res) => {
     try {
-      console.log("in try");
-
       let list = req.list;
       const { from, to } = req.body;
-      console.log(from, to, list);
 
       const removedItem = list.items.splice(from, 1);
-      console.log("after remove", list, removedItem);
-
       list.items.splice(to, 0, ...removedItem);
       list.save();
 

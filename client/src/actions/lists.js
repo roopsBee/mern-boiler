@@ -68,6 +68,18 @@ export const updateListName = (listId, name) => (dispatch) => {
     });
 };
 
+export const reOrderList = (listId, order) => (dispatch) => {
+  api
+    .patch(`/list/${listId}/reorder`, order)
+    .then(({ data }) => {
+      const { list } = data;
+      dispatch({ type: GET_LIST, payload: list });
+    })
+    .catch((error) => {
+      handleError(error);
+    });
+};
+
 export const deleteList = (listId, onSuccess) => (dispatch) => {
   api
     .delete(`/list/${listId}`)

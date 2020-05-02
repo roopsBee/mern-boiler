@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import arrayMove from "array-move";
+import { useDispatch } from "react-redux";
 import List from "./List";
+import { REORDER_LIST } from "../../../actions/types";
+import { reOrderList } from "../../../actions/lists";
 
 function DraggableListItems({ listId }) {
   const list = useSelector((state) => state.currentList);
-  const [items, setItems] = useState(list.items);
+  const dispatch = useDispatch();
 
-  const onDragEnd = (result) => {
+  const onDragEnd = ({ destination, source }) => {
     // dropped outside droppable or no movement
-    if (
-      !result.destination ||
-      result.destination.index === result.source.index
-    ) {
+    if (!destination || destination.index === source.index) {
       return;
     }
-    setItems(arrayMove(items, result.source.index, result.destination.index));
+
+    const order = { from: source.index, to: destination.index };
+    const newOrderedList = arrayMove(list.items, order.from, order.to);
+
+    //update local state for ux then update backend
+    dispatch({ type: REORDER_LIST, payload: newOrderedList });
+    dispatch(reOrderList(listId, order));
   };
 
   return (
