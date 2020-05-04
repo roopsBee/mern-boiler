@@ -7,7 +7,7 @@ const { checkAuthenticated } = require("./middleware");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const initializePassport = require("./passportConfig");
+const initializePassport = require("./passport/passportConfig");
 
 // if not in production load donenv and variables
 if (process.env.NODE_ENV !== "production") {

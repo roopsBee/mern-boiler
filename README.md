@@ -24,5 +24,3 @@ Boiler plate for a MERN stack / todo list app
 -sanitize / validate inputs
 
 -refactor transitions into seperate file
-
--change colours for done items

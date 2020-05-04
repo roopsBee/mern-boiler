@@ -7,7 +7,7 @@ const { invalidCredentials, loginSuccess, loggedOut } = require("./responses");
 const router = express.Router();
 
 // @route   POST /auth/login
-// @desc    login user
+// @desc    login user local strategy
 // @access  Public
 router.post(
   "/login",
