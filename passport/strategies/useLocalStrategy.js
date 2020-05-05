@@ -6,7 +6,7 @@ const useLocalStrategy = (passport) => {
   const authenticateUser = async (email, password, done) => {
     try {
       email = email.toLowerCase();
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email, password: { $exists: true } });
       if (!user) {
         return done(null, false, { message: "invalid email" });
       }

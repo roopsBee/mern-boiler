@@ -55,7 +55,8 @@ app.use(passport.session());
 
 //routes
 app.use("/user", require("./routes/userRoutes"));
-app.use("/auth", require("./routes/authRoutes"));
+app.use("/auth", require("./routes/authRoutes/authRoutes"));
+app.use("/auth/google", require("./routes/authRoutes/googleAuthRoutes"));
 app.use("/list", require("./routes/listRoutes"));
 app.use("/list/:id/item", require("./routes/itemRoutes"));
 

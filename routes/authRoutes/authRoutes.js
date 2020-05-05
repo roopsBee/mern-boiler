@@ -1,8 +1,10 @@
 const express = require("express");
-const { check, validationResult } = require("express-validator");
 const passport = require("passport");
-const { checkNotAuthenticated, checkAuthenticated } = require("../middleware");
-const { invalidCredentials, loginSuccess, loggedOut } = require("./responses");
+const {
+  checkNotAuthenticated,
+  checkAuthenticated,
+} = require("../../middleware");
+const { invalidCredentials, loginSuccess, loggedOut } = require("../responses");
 
 const router = express.Router();
 
