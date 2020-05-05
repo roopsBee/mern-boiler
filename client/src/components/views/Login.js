@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 
-import FormikValidationTextField from "../forms/FormikValidationTextField";
+import FormikValidationTextField from "../common/FormikValidationTextField";
 import { logIn } from "../../actions/auth";
 
 const useStyles = makeStyles((theme) => ({
