@@ -42,7 +42,7 @@ const App = () => {
             <PrivateRoute exact path="/list/create" component={CreateList} />
             <PrivateRoute exact path="/list/:id" component={ShowList} />
             <PrivateRoute exact path="/auth/success" component={AuthSuccess} />
-            <Route exact path="auth/failure" component={AuthFailure} />
+            <Route exact path="/auth/failure" component={AuthFailure} />
           </Switch>
         </RoutesTransition>
       </Layout>

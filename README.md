@@ -10,7 +10,7 @@ Boiler plate for a MERN stack / todo list app
 -use snyx to test vulnerabilities
 
 -add github authentication
--add google authentication
+
 -validation/sanitation on routes
 
 -review response status codes
@@ -25,4 +25,4 @@ Boiler plate for a MERN stack / todo list app
 
 -refactor transitions into seperate file
 
--change success theme color while keeping color of done list item
+-change snackbar colours, set a fixed size, close current snackbar and open anther when overlapping.
