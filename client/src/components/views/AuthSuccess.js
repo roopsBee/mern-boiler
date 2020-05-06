@@ -8,6 +8,7 @@ function AuthSuccess() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setAlert("Login Successful", "success"));
+    // eslint-disable-next-line
   }, []);
   return (
     <div>

@@ -56,6 +56,7 @@ app.use(passport.session());
 app.use("/user", require("./routes/userRoutes"));
 app.use("/auth", require("./routes/authRoutes/authRoutes"));
 app.use("/auth/google", require("./routes/authRoutes/googleAuthRoutes"));
+app.use("/auth/github", require("./routes/authRoutes/githubAuthRoutes"));
 app.use("/list", require("./routes/listRoutes"));
 app.use("/list/:id/item", require("./routes/itemRoutes"));
 

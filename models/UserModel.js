@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    githubId: {
+      type: String,
+      unique: true,
+    },
   },
   { timestamps: true }
 );

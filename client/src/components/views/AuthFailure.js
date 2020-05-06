@@ -8,6 +8,7 @@ function AuthFailure() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setAlert("Login Has Failed.", "error"));
+    // eslint-disable-next-line
   }, []);
   return (
     <div>

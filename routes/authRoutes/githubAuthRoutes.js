@@ -8,29 +8,27 @@ const {
 
 const router = express.Router();
 
-// @route   GET /auth/google/login
-// @desc    login user google strategy
+// @route   GET /auth/github/login
+// @desc    login user github strategy
 // @access  Public
 router.get(
   "/login",
   checkNotAuthenticated,
-  passport.authenticate("google", {
+  passport.authenticate("github", {
     failWithError: true,
-    scope: ["profile", "email"],
   }),
   (err, req, res, next) => {
-    console.log(err);
     return res.redirect(CLIENT_AUTH_FAILURE_URL);
   }
 );
 
-// @route   GET /auth/google/redirect
-// @desc    login redirect for google strategy
+// @route   GET /auth/github/redirect
+// @desc    login redirect for github strategy
 // @access  Public
 router.get(
   "/redirect",
   checkNotAuthenticated,
-  passport.authenticate("google", { failWithError: true }),
+  passport.authenticate("github", { failWithError: true }),
   (req, res, next) => {
     return res.redirect(CLIENT_AUTH_SUCCESS_URL);
   },
