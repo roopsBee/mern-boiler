@@ -8,9 +8,9 @@ const MyAlerts = () => {
   const [open, setOpen] = useState(false);
   const [currentAlert, setCurrentAlert] = useState({
     message: "",
-    severity: "success"
+    severity: "success",
   });
-  const alerts = useSelector(state => state.alerts);
+  const alerts = useSelector((state) => state.alerts);
   const dispatch = useDispatch();
 
   useEffect(() => {

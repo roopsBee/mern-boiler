@@ -6,6 +6,7 @@ import {
   Container,
   Typography,
   Avatar,
+  Grid,
 } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,6 +15,7 @@ import { useDispatch } from "react-redux";
 
 import FormikValidationTextField from "../common/FormikValidationTextField";
 import { logIn } from "../../actions/auth";
+import GoogleButton from "../common/GoogleButton/GoogleButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -115,6 +117,13 @@ export default function Login() {
               </Form>
             )}
           </Formik>
+          <Grid container>
+            <Grid container item justify="center">
+              <GoogleButton href="http://localhost:5000/auth/google/login">
+                Google
+              </GoogleButton>
+            </Grid>
+          </Grid>
         </Paper>
       </Container>
     </div>

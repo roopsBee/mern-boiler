@@ -3,7 +3,6 @@ const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const helmet = require("helmet");
-const { checkAuthenticated } = require("./middleware");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");

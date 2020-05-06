@@ -1,6 +1,10 @@
 const express = require("express");
 const passport = require("passport");
 const { checkNotAuthenticated } = require("../../middleware");
+const {
+  CLIENT_AUTH_SUCCESS_URL,
+  CLIENT_AUTH_FAILURE_URL,
+} = require("../../serverConfig");
 
 const router = express.Router();
 
@@ -14,9 +18,7 @@ router.get(
     failWithError: true,
     scope: ["profile", "email"],
   }),
-  (req, res, next) => {
-    res.send("done");
-  },
+  (req, res, next) => {},
   (err, req, res, next) => {
     return res.status(401).json(invalidCredentials);
   }
@@ -30,10 +32,11 @@ router.get(
   checkNotAuthenticated,
   passport.authenticate("google", { failWithError: true }),
   (req, res, next) => {
-    res.json(req.user);
+    return res.redirect(CLIENT_AUTH_SUCCESS_URL);
   },
   (err, req, res, next) => {
-    return res.status(401).json(invalidCredentials);
+    console.log(err);
+    return res.redirect(CLIENT_AUTH_FAILURE_URL);
   }
 );
 

@@ -18,6 +18,8 @@ import CreateList from "./components/views/CreateList";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import ShowList from "./components/views/ShowList";
 import RoutesTransition from "./components/routes/RoutesTransition";
+import AuthSuccess from "./components/views/AuthSuccess";
+import AuthFailure from "./components/views/AuthFailure";
 
 const App = () => {
   const path = window.location.pathname;
@@ -39,6 +41,8 @@ const App = () => {
             <LoggedOutRoute exact path="/auth/register" component={Register} />
             <PrivateRoute exact path="/list/create" component={CreateList} />
             <PrivateRoute exact path="/list/:id" component={ShowList} />
+            <PrivateRoute exact path="/auth/success" component={AuthSuccess} />
+            <Route exact path="auth/failure" component={AuthFailure} />
           </Switch>
         </RoutesTransition>
       </Layout>
