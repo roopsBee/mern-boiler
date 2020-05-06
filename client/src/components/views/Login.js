@@ -17,6 +17,7 @@ import FormikValidationTextField from "../common/FormikValidationTextField";
 import { logIn } from "../../actions/auth";
 import GoogleButton from "../common/GoogleButton/GoogleButton";
 import MyGithubButton from "../common/GithubButton.js/GithubButton";
+import { GITHUB_AUTH_ROUTE, GOOGLE_AUTH_ROUTE } from "../../config";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -120,10 +121,8 @@ export default function Login() {
           </Formik>
           <Grid container>
             <Grid container item justify="center">
-              <GoogleButton href="http://localhost:5000/auth/google/login">
-                Google
-              </GoogleButton>
-              <MyGithubButton>Github</MyGithubButton>
+              <GoogleButton href={GOOGLE_AUTH_ROUTE}>Google</GoogleButton>
+              <MyGithubButton href={GITHUB_AUTH_ROUTE}>Github</MyGithubButton>
             </Grid>
           </Grid>
         </Paper>

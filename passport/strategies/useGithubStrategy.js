@@ -13,13 +13,16 @@ const useGithubStrategy = (passport) => {
       async (accessToken, refreshToken, { _json, emails }, done) => {
         const email = emails[0].value;
         const { login: name, id: githubId } = _json;
-
-        const user = await User.findOne({ githubId });
-        if (user) {
-          return done(null, user);
-        } else {
-          const newUser = await new User({ name, email, githubId }).save();
-          return done(null, newUser);
+        try {
+          const user = await User.findOne({ githubId });
+          if (user) {
+            return done(null, user);
+          } else {
+            const newUser = await new User({ name, email, githubId }).save();
+            return done(null, newUser);
+          }
+        } catch (error) {
+          return done(error);
         }
       }
     )

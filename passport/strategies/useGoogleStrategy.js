@@ -12,12 +12,16 @@ const useGoogleStrategy = (passport) => {
       async (token, tokenSecret, { _json }, done) => {
         const { name, sub: googleId, email } = _json;
 
-        const user = await User.findOne({ googleId });
-        if (user) {
-          return done(null, user);
-        } else {
-          const newUser = await new User({ name, email, googleId }).save();
-          return done(null, newUser);
+        try {
+          const user = await User.findOne({ googleId });
+          if (user) {
+            return done(null, user);
+          } else {
+            const newUser = await new User({ name, email, googleId }).save();
+            return done(null, newUser);
+          }
+        } catch (error) {
+          done(error);
         }
       }
     )

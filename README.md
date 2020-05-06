@@ -9,15 +9,13 @@ Boiler plate for a MERN stack / todo list app
 
 -use snyx to test vulnerabilities
 
--add github authentication
-
 -validation/sanitation on routes
 
 -review response status codes
 
-=====TODOS CLIENT====
+-add facebook oauth
 
--modify alerts to show more or remove stack of alerts and show latest one immediately. Use library to stack alerts
+=====TODOS CLIENT====
 
 -unit testing with jest
 
@@ -26,3 +24,5 @@ Boiler plate for a MERN stack / todo list app
 -refactor transitions into seperate file
 
 -change snackbar colours, set a fixed size, close current snackbar and open anther when overlapping.
+
+-align sign in buttons
