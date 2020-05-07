@@ -28,7 +28,7 @@ router.get(
   checkNotAuthenticated,
   passport.authenticate("google", { failWithError: true }),
   (req, res, next) => {
-    return res.redirect("auth/success");
+    return res.redirect("/auth/success");
   },
   (err, req, res, next) => {
     console.log(err);
