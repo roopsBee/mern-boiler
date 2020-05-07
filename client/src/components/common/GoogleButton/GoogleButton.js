@@ -6,7 +6,7 @@ import googleLogo from "./googleLogo.png";
 const useStyles = makeStyles((theme) => ({
   imageIcon: {
     boxSizing: "content-box",
-    height: 18,
+    height: 17,
     backgroundColor: "white",
     border: "11px solid white",
     borderRadius: 2,
