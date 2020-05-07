@@ -26,3 +26,5 @@ Boiler plate for a MERN stack / todo list app
 -change snackbar colours, set a fixed size, close current snackbar and open anther when overlapping.
 
 -align sign in buttons
+
+-change what adress is shown when routing to succes login route so the address doesnt look to change so fast
