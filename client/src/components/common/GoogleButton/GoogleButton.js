@@ -1,6 +1,6 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import React from "./node_modules/react";
+import { makeStyles } from "./node_modules/@material-ui/core/styles";
+import { Button } from "./node_modules/@material-ui/core";
 import googleLogo from "./googleLogo.png";
 
 const useStyles = makeStyles((theme) => ({

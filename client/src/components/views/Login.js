@@ -15,8 +15,8 @@ import { useDispatch } from "react-redux";
 
 import FormikValidationTextField from "../common/FormikValidationTextField";
 import { logIn } from "../../actions/auth";
-import GoogleButton from "../common/GoogleButton/GoogleButton";
-import MyGithubButton from "../common/GithubButton.js/GithubButton";
+import GoogleButton from "../common/googleButton/GoogleButton";
+import GithubButton from "../common/githubButton/GithubButton";
 import { GITHUB_AUTH_ROUTE, GOOGLE_AUTH_ROUTE } from "../../config";
 
 const useStyles = makeStyles((theme) => ({
@@ -122,7 +122,7 @@ export default function Login() {
           <Grid container>
             <Grid container item justify="center">
               <GoogleButton href={GOOGLE_AUTH_ROUTE}>Google</GoogleButton>
-              <MyGithubButton href={GITHUB_AUTH_ROUTE}>Github</MyGithubButton>
+              <GithubButton href={GITHUB_AUTH_ROUTE}>Github</GithubButton>
             </Grid>
           </Grid>
         </Paper>
