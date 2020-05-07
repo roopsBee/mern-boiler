@@ -23,7 +23,7 @@ Boiler plate for a MERN stack / todo list app
 
 -refactor transitions into seperate file
 
--change snackbar colours, set a fixed size, close current snackbar and open anther when overlapping.
+-change snackbar colours, set a fixed size/fullwidth, close current snackbar and open anther when overlapping.
 
 -align sign in buttons
 
@@ -34,3 +34,7 @@ Boiler plate for a MERN stack / todo list app
 -login after register
 
 -move title on app bar to home screen to avoid overlap on mobile screens
+
+-disable auth buttons and change clicked to signing in text.
+
+-change github button primary colour to dark grey
