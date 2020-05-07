@@ -28,3 +28,5 @@ Boiler plate for a MERN stack / todo list app
 -align sign in buttons
 
 -change what adress is shown when routing to succes login route so the address doesnt look to change so fast
+
+-create new favicon
