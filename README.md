@@ -32,3 +32,5 @@ Boiler plate for a MERN stack / todo list app
 -create new favicon
 
 -login after register
+
+-move title on app bar to home screen to avoid overlap on mobile screens

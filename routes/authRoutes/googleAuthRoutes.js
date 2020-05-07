@@ -1,6 +1,10 @@
 const express = require("express");
 const passport = require("passport");
 const { checkNotAuthenticated } = require("../../middleware");
+const {
+  CLIENT_AUTH_SUCCESS_URL,
+  CLIENT_AUTH_FAILURE_URL,
+} = require("../../serverConfig");
 
 const router = express.Router();
 
@@ -16,7 +20,7 @@ router.get(
   }),
   (err, req, res, next) => {
     console.log(err);
-    return res.redirect("/");
+    return res.redirect(CLIENT_AUTH_FAILURE_URL);
   }
 );
 
@@ -28,7 +32,7 @@ router.get(
   checkNotAuthenticated,
   passport.authenticate("google", { failWithError: true }),
   (req, res, next) => {
-    return res.redirect("/auth/success");
+    return res.redirect(CLIENT_AUTH_SUCCESS_URL);
   },
   (err, req, res, next) => {
     console.log(err);

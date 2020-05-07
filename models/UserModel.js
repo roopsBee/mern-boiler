@@ -15,11 +15,9 @@ const UserSchema = new mongoose.Schema(
     },
     googleId: {
       type: String,
-      unique: true,
     },
     githubId: {
       type: String,
-      unique: true,
     },
   },
   { timestamps: true }
