@@ -7,6 +7,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const initializePassport = require("./passport/passportConfig");
+const path = require("path");
 
 // if not in production load donenv and variables
 if (process.env.NODE_ENV !== "production") {
@@ -60,9 +61,14 @@ app.use("/auth/github", require("./routes/authRoutes/githubAuthRoutes"));
 app.use("/list", require("./routes/listRoutes"));
 app.use("/list/:id/item", require("./routes/itemRoutes"));
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello World", severity: "success" });
-});
+// serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // Listen
 const PORT = process.env.PORT || 5000;
