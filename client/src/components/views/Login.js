@@ -7,6 +7,8 @@ import {
   Typography,
   Avatar,
   Grid,
+  CircularProgress,
+  Modal,
 } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,6 +20,7 @@ import { logIn } from "../../actions/auth";
 import GoogleButton from "../common/googleButton/GoogleButton";
 import GithubButton from "../common/githubButton/GithubButton";
 import { GITHUB_AUTH_ROUTE, GOOGLE_AUTH_ROUTE } from "../../config";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,6 +45,15 @@ const useStyles = makeStyles((theme) => ({
   container: {
     padding: 0,
   },
+  loader: {
+    margin: "auto",
+    "&:focus": {
+      outline: "none",
+    },
+  },
+  modal: {
+    display: "flex",
+  },
 }));
 
 const validationSchema = yup.object().shape({
@@ -61,6 +73,11 @@ const validationSchema = yup.object().shape({
 export default function Login() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleAuthButtonClick = () => {
+    setIsButtonDisabled(true);
+  };
 
   return (
     <div className="Login">
@@ -74,11 +91,12 @@ export default function Login() {
               email: "",
               password: "",
             }}
-            onSubmit={({ email, password }, { setSubmitting }) => {
+            onSubmit={({ email, password }) => {
+              setIsButtonDisabled(true);
               const user = { email, password };
               dispatch(
                 logIn(user, () => {
-                  setSubmitting(false);
+                  setIsButtonDisabled(false);
                 })
               );
             }}
@@ -111,7 +129,7 @@ export default function Login() {
 
                 <Button
                   className={classes.submit}
-                  disabled={isSubmitting}
+                  disabled={isButtonDisabled}
                   color="secondary"
                   variant="contained"
                   type="submit"
@@ -124,11 +142,31 @@ export default function Login() {
           </Formik>
           <Grid container>
             <Grid container item justify="center">
-              <GoogleButton href={GOOGLE_AUTH_ROUTE}>Google</GoogleButton>
-              <GithubButton href={GITHUB_AUTH_ROUTE}>Github</GithubButton>
+              <GoogleButton
+                href={GOOGLE_AUTH_ROUTE}
+                disabled={isButtonDisabled}
+                onClick={handleAuthButtonClick}
+              >
+                Google
+              </GoogleButton>
+              <GithubButton
+                href={GITHUB_AUTH_ROUTE}
+                disabled={isButtonDisabled}
+                onClick={handleAuthButtonClick}
+              >
+                Github
+              </GithubButton>
             </Grid>
           </Grid>
         </Paper>
+
+        <Modal open={isButtonDisabled} className={classes.modal}>
+          <CircularProgress
+            size={70}
+            color="secondary"
+            className={classes.loader}
+          />
+        </Modal>
       </Container>
     </div>
   );
