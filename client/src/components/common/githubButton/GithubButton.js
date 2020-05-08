@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   buttonRoot: {
     padding: 0,
     paddingRight: 20,
-    backgroundColor: "black",
+    backgroundColor: "#1d1f1d",
     color: "white",
     "&.MuiButton-sizeSmall": {
       paddingRight: 18,
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     "&:hover": {
-      backgroundColor: "#33322f",
+      backgroundColor: "#303330",
     },
   },
   logo: {

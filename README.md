@@ -38,3 +38,5 @@ Boiler plate for a MERN stack / todo list app
 -disable auth buttons and change clicked to signing in text.
 
 -change github button primary colour to dark grey
+
+-remove padding/margin on mobile, on container and main
