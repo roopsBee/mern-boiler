@@ -13,9 +13,12 @@ import { addItem } from "../../actions/item";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: 0,
-    paddingLeft: "30px",
-    paddingRight: "0px",
-    width: "300px",
+    paddingLeft: 31,
+    paddingRight: 0,
+    width: "379px",
+  },
+  icon: {
+    paddingLeft: 8,
   },
 }));
 
@@ -61,7 +64,11 @@ const AddItem = ({ listId }) => {
                 />
               </Grid>
               <Grid item>
-                <IconButton disabled={isSubmitting} type="submit">
+                <IconButton
+                  className={classes.icon}
+                  disabled={isSubmitting}
+                  type="submit"
+                >
                   <AddBoxIcon color="secondary" />
                 </IconButton>
               </Grid>

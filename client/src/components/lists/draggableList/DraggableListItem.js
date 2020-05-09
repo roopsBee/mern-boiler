@@ -18,9 +18,10 @@ import { GET_LIST } from "../../../actions/types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "360px",
-    paddingLeft: "15px",
+    width: "430px",
     paddingRight: 0,
+    paddingLeft: 0,
+    marginRight: "-20px",
   },
   icon: {
     padding: "6px",

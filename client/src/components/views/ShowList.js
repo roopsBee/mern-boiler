@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     padding: 0,
   },
+  title: {
+    width: 384,
+    marginLeft: -20,
+  },
 }));
 
 const ShowList = (props) => {
@@ -73,7 +77,11 @@ const ShowList = (props) => {
           <Paper elevation={10} className={classes.paper}>
             <Grid container justify="center" alignItems="center">
               <Grid item xs={10}>
-                <ListName listId={listId} handleDeleteList={handleDeleteList} />
+                <ListName
+                  className={classes.title}
+                  listId={listId}
+                  handleDeleteList={handleDeleteList}
+                />
               </Grid>
               <List>
                 <DraggableListItems listId={listId} />

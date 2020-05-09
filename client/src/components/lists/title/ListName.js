@@ -6,7 +6,7 @@ import { updateListName } from "../../../actions/lists";
 import { setAlert } from "../../../actions/alerts";
 import DeleteListButton from "./DeleteListButton";
 
-const ListName = ({ listId, handleDeleteList }) => {
+const ListName = ({ listId, handleDeleteList, ...props }) => {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.currentList);
   let [listName, setListName] = useState("");
@@ -32,7 +32,7 @@ const ListName = ({ listId, handleDeleteList }) => {
   };
 
   return (
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" {...props}>
       <Grid item>
         <DeleteListButton handleDeleteList={handleDeleteList} listId={listId} />
       </Grid>
