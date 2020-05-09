@@ -23,8 +23,11 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   title: {
-    width: 384,
-    marginLeft: -20,
+    width: 409,
+    paddingRight: 25,
+  },
+  gridTitle: {
+    maxWidth: "100%",
   },
 }));
 
@@ -76,7 +79,7 @@ const ShowList = (props) => {
         <ShowHide isShowValue={!isLoadingList} Replace={ListTransition}>
           <Paper elevation={10} className={classes.paper}>
             <Grid container justify="center" alignItems="center">
-              <Grid item xs={10}>
+              <Grid item xs={10} className={classes.gridTitle}>
                 <ListName
                   className={classes.title}
                   listId={listId}
