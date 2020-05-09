@@ -19,7 +19,6 @@ import { NavLink } from "react-router-dom";
 import store from "../../store";
 import { logOut } from "../../actions/auth";
 import ShowHide from "../auth/ShowHide";
-import { APP_NAME } from "../../config";
 import Loading from "./Loading";
 
 const drawerWidth = 200;
@@ -95,9 +94,11 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" noWrap className={classes.title}>
-            {APP_NAME}
-          </Typography>
+          <Typography
+            variant="h5"
+            noWrap
+            className={classes.title}
+          ></Typography>
 
           <ShowHide isShowValue={!isLoggedIn}>
             <Button component={NavLink} to="/auth/register" color="inherit">
