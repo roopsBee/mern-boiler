@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
+  container: {
+    padding: 0,
+  },
 }));
 
 const ShowList = (props) => {
@@ -65,7 +68,7 @@ const ShowList = (props) => {
       toggle={!deleteTransition}
       transitionStyles={transitionStyles}
     >
-      <Container maxWidth="xs">
+      <Container maxWidth="xs" className={classes.container}>
         <ShowHide isShowValue={!isLoadingList} Replace={ListTransition}>
           <Paper elevation={10} className={classes.paper}>
             <Grid container justify="center" alignItems="center">

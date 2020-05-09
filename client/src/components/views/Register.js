@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 3, 0),
   },
+  container: {
+    padding: 0,
+  },
 }));
 
 const validationSchema = yup.object().shape({
@@ -67,7 +70,7 @@ export default function Register() {
 
   return (
     <div className="Register">
-      <Container maxWidth="xs">
+      <Container maxWidth="xs" className={classes.container}>
         <Paper elevation={10} className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOpenIcon />

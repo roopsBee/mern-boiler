@@ -36,3 +36,5 @@ Boiler plate for a MERN stack / todo list app
 -move title on app bar to home screen to avoid overlap on mobile screens
 
 -disable auth buttons and change clicked to signing in text.
+
+-set width of list title
