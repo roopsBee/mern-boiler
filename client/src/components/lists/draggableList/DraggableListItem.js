@@ -17,12 +17,7 @@ import { useTheme } from "@material-ui/core";
 import { GET_LIST } from "../../../actions/types";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "430px",
-    paddingRight: 0,
-    paddingLeft: 0,
-    marginRight: "-20px",
-  },
+  root: {},
   icon: {
     padding: "6px",
   },
@@ -103,7 +98,7 @@ function DraggableListItem({
                   <AnimatedDeleteIcon color="secondary" style={SVGIconColor} />
                 </IconButton>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs>
                 <TextField
                   autoComplete="off"
                   margin="none"

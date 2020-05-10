@@ -36,7 +36,7 @@ const ListName = ({ listId, handleDeleteList, ...props }) => {
       <Grid item>
         <DeleteListButton handleDeleteList={handleDeleteList} listId={listId} />
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs>
         <TextField
           inputProps={{ style: { textAlign: "center" } }}
           color="secondary"

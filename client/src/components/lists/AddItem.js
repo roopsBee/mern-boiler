@@ -11,14 +11,8 @@ import FormikValidationTextField from "../common/FormikValidationTextField";
 import { addItem } from "../../actions/item";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: 0,
-    paddingLeft: 31,
-    paddingRight: 0,
-    width: "379px",
-  },
   icon: {
-    paddingLeft: 8,
+    padding: 9,
   },
 }));
 
@@ -26,7 +20,7 @@ const validationSchema = yup.object().shape({
   text: yup.string().trim().max(40).required("Cannot be empty"),
 });
 
-const AddItem = ({ listId }) => {
+const AddItem = ({ listId, ...props }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -50,8 +44,8 @@ const AddItem = ({ listId }) => {
       {({ isSubmitting, handleSubmit }) => (
         <Form>
           <Grid container justify="center" alignItems="center">
-            <ListItem className={classes.root}>
-              <Grid item xs={10}>
+            <ListItem {...props}>
+              <Grid item xs>
                 <FormikValidationTextField
                   isSuccessStyle={false}
                   fullWidth
