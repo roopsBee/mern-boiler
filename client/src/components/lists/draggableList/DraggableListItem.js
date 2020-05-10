@@ -17,9 +17,9 @@ import { useTheme } from "@material-ui/core";
 import { GET_LIST } from "../../../actions/types";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  icon: {
-    padding: "6px",
+  root: { paddingRight: 0 },
+  dragIcon: {
+    padding: "10px 14px",
   },
 }));
 
@@ -127,7 +127,7 @@ function DraggableListItem({
               </Grid>
               <Grid item>
                 <IconButton
-                  className={classes.icon}
+                  className={classes.dragIcon}
                   {...provided.dragHandleProps}
                 >
                   <AnimatedDragIcon color="secondary" style={SVGIconColor} />

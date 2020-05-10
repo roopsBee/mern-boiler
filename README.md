@@ -32,3 +32,5 @@ Boiler plate for a MERN stack / todo list app
 -create new favicon
 
 -login after register
+
+-change drag settings to play better on mobile
