@@ -7,7 +7,7 @@ const useGoogleStrategy = (passport) => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/redirect",
+        callbackURL: "/api/auth/google/redirect",
       },
       async (token, tokenSecret, { _json }, done) => {
         const { name, sub: googleId, email } = _json;

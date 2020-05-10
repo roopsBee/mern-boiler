@@ -7,7 +7,7 @@ const useGithubStrategy = (passport) => {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "/auth/github/redirect",
+        callbackURL: "/api/auth/github/redirect",
         scope: ["user:email"],
       },
       async (accessToken, refreshToken, { _json, emails }, done) => {
