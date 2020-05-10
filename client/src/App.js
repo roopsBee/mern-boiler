@@ -4,6 +4,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { useEffect } from "react";
 import { Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import Home from "./components/views/Home";
@@ -43,6 +44,7 @@ const App = () => {
             <PrivateRoute exact path="/list/:id" component={ShowList} />
             <PrivateRoute exact path="/auth/success" component={AuthSuccess} />
             <Route exact path="/auth/failure" component={AuthFailure} />
+            <Route render={() => <Redirect to={{ pathname: "/" }} />} />
           </Switch>
         </RoutesTransition>
       </Layout>

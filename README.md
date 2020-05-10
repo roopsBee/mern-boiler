@@ -34,3 +34,5 @@ Boiler plate for a MERN stack / todo list app
 -login after register
 
 -change drag settings to play better on mobile
+
+-change api responses to redirect to app, so when accessing endpoint from outside the app you dont just get json response. change get requests to post, and redirect errors to home.
