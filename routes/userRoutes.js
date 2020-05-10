@@ -14,7 +14,7 @@ const {
 
 const router = express.Router();
 
-// @route   POST /user
+// @route   POST /api/user
 // @desc    Register user
 // @access  Public
 router.post(

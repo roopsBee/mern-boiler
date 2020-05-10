@@ -54,12 +54,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //routes
-app.use("/user", require("./routes/userRoutes"));
-app.use("/auth", require("./routes/authRoutes/authRoutes"));
-app.use("/auth/google", require("./routes/authRoutes/googleAuthRoutes"));
-app.use("/auth/github", require("./routes/authRoutes/githubAuthRoutes"));
-app.use("/list", require("./routes/listRoutes"));
-app.use("/list/:id/item", require("./routes/itemRoutes"));
+app.use("/api/user", require("./routes/userRoutes"));
+app.use("/api/auth", require("./routes/authRoutes/authRoutes"));
+app.use("/api/auth/google", require("./routes/authRoutes/googleAuthRoutes"));
+app.use("/api/auth/github", require("./routes/authRoutes/githubAuthRoutes"));
+app.use("/api/list", require("./routes/listRoutes"));
+app.use("/api/list/:id/item", require("./routes/itemRoutes"));
 
 // serve static assets in production
 if (process.env.NODE_ENV === "production") {

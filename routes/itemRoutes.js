@@ -10,7 +10,7 @@ const { serverError, itemDeleted } = require("./responses");
 
 const router = express.Router({ mergeParams: true });
 
-// @route   POST /list/:id/item
+// @route   POST /api/list/:id/item
 // @desc    add a new item to list
 // @access  Private
 router.post(
@@ -34,7 +34,7 @@ router.post(
   }
 );
 
-// @route   PATCH /list/:id/item/:itemid
+// @route   PATCH /api/list/:id/item/:itemid
 // @desc    update list
 // @access  Private
 router.patch(
@@ -65,7 +65,7 @@ router.patch(
   }
 );
 
-// @route   DELETE /list/:id/item/:itemid
+// @route   DELETE /api/list/:id/item/:itemid
 // @desc    delete a item
 // @access  Private
 router.delete(

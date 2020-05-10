@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-// @route   GET /auth/google/login
+// @route   GET /api/auth/google/login
 // @desc    login user google strategy
 // @access  Public
 router.get(
@@ -24,7 +24,7 @@ router.get(
   }
 );
 
-// @route   GET /auth/google/redirect
+// @route   GET /api/auth/google/redirect
 // @desc    login redirect for google strategy
 // @access  Public
 router.get(

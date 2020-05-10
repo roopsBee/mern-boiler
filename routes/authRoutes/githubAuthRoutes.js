@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-// @route   GET /auth/github/login
+// @route   GET /api/auth/github/login
 // @desc    login user github strategy
 // @access  Public
 router.get(
@@ -22,7 +22,7 @@ router.get(
   }
 );
 
-// @route   GET /auth/github/redirect
+// @route   GET /api/auth/github/redirect
 // @desc    login redirect for github strategy
 // @access  Public
 router.get(

@@ -17,7 +17,7 @@ const {
 
 const router = express.Router();
 
-// @route   GET /list
+// @route   GET /api/list
 // @desc    get all of users lists
 // @access  Private
 router.get("/", checkAuthenticated, async (req, res) => {
@@ -30,7 +30,7 @@ router.get("/", checkAuthenticated, async (req, res) => {
   }
 });
 
-// @route   POST /list
+// @route   POST /api/list
 // @desc    create a new list
 // @access  Private
 router.post(
@@ -63,7 +63,7 @@ router.post(
   }
 );
 
-// @route   GET /list/:id
+// @route   GET /api/list/:id
 // @desc    show a single list
 // @access  Private
 router.get(
@@ -77,7 +77,7 @@ router.get(
   }
 );
 
-// @route   PATCH /list/:id
+// @route   PATCH /api/list/:id
 // @desc    update list name
 // @access  Private
 router.patch(
@@ -100,7 +100,7 @@ router.patch(
   }
 );
 
-// @route   PATCH /list/:id/reorder
+// @route   PATCH /api/list/:id/reorder
 // @desc    reorder list
 // @access  Private
 router.patch(
@@ -129,7 +129,7 @@ router.patch(
   }
 );
 
-// @route   DELETE /list/:id
+// @route   DELETE /api/list/:id
 // @desc    delete a list
 // @access  Private
 router.delete(
