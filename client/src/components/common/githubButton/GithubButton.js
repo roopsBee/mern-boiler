@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "black",
     border: "10px solid black",
     borderRadius: 5,
-    marginRight: 10,
+    margin: "0px 10px 0px 0px",
   },
   buttonRoot: {
     padding: 0,
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 18,
       "& img": {
         height: 22,
-        marginRight: 8,
+        margin: "0px 8px 0px 0px",
         borderWidth: 9,
       },
     },
@@ -33,16 +33,13 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 22,
       "& img": {
         height: 26,
-        marginRight: 12,
+        margin: "0px 12px 0px 0px",
         borderWidth: 11,
       },
     },
     "&:hover": {
       backgroundColor: "#303330",
     },
-  },
-  logo: {
-    height: "inherit",
   },
 }));
 
@@ -58,16 +55,14 @@ const MyGithubButton = (props) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Button
-        {...props}
-        className={classes.buttonRoot}
-        startIcon={<GithubIcon />}
-        variant="contained"
-      >
-        {props.children}
-      </Button>
-    </div>
+    <Button
+      {...props}
+      className={classes.buttonRoot}
+      startIcon={<GithubIcon />}
+      variant="contained"
+    >
+      {props.children}
+    </Button>
   );
 };
 export default MyGithubButton;
